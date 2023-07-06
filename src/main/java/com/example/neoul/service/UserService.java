@@ -42,14 +42,6 @@ public class UserService {
 
     @SneakyThrows
     public User findNowLoginUser(){
-       // return SecurityUtil.getCurrentUsername().flatMap(userRepository::findUserWithAuthoritiesByUsername).orElse(null);
-
-//        String username = SecurityUtil.getCurrentUsername().orElse(null);
-//        return userRepository.findUserByUsername(username).get();
-
-
-//        Long userIdx = tokenProvider.getUserIdx();
-//        return userRepository.findUserByIdx(userIdx).get();
 
         String username = SecurityUtil.getCurrentUsername().orElse(null);
 
