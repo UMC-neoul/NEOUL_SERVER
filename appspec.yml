@@ -1,0 +1,22 @@
+version: 0.0
+os: linux
+# 파일의 source경로와 EC2내의 경로를 입력하고 파일이 중첩될 시 어떤 행동을 취할지 설정한다.
+files:
+  - source: /
+    destination: /home/ubuntu/neoul
+    overwrite: yes
+# 위에서 overwrite를 yes로 하더라도 파일이 중첩되면 배포가 실패할 수 있으므로 꼭 따로 또 설정한다.
+#file_exists_behavior: OVERWRITE
+
+permissions:
+  - object: /
+    pattern: "**"
+    owner: ubuntu
+    group: ubuntu
+
+hooks:
+  ApplicationStart:
+    # 배포 스크립트로 다음 스크립트를 활용한다.
+    - location: scripts/build.sh
+      timeout: 60
+      runas: root
