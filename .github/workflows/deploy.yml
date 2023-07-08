@@ -37,9 +37,8 @@ jobs:
           java-version: '11'
 
       # (2-1) 권한 추가
-      - name: Grant execute permission for gradlew
-        run: chmod +x ./module-api/gradlew
-        shell: bash
+      - name: Run chmod to make gradlew executable
+        run: chmod +x ./gradlew
 
       # (2-2) yml 파일 세팅
       - name: Set yaml file
