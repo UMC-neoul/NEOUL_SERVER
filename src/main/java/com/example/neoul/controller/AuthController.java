@@ -1,10 +1,5 @@
 package com.example.neoul.controller;
 
-import com.example.demo.base.BaseException;
-import com.example.demo.base.BaseResponse;
-import com.example.demo.dto.TokenRes;
-import com.example.demo.dto.UserReq;
-import com.example.demo.service.AuthService;
 import com.example.neoul.dto.TokenRes;
 import com.example.neoul.dto.UserReq;
 import com.example.neoul.global.entity.BaseEntity;
@@ -13,8 +8,6 @@ import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
-import static com.example.demo.base.BaseResponseStatus.FAIL;
-import static com.example.demo.base.BaseResponseStatus.SUCCESS;
 
 @RestController
 @RequestMapping("/oauth")
