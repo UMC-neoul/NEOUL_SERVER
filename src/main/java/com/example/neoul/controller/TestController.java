@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 @Slf4j
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/test")
 public class TestController {
-    @GetMapping("/test")
+    @GetMapping("/testapi")
     public ResponseEntity test(){
         log.info("test api 수신");
         return new ResponseEntity("test ok",HttpStatus.OK);
