@@ -21,7 +21,6 @@ spring:
     pathmatch:
       matching-strategy: ant_path_matcher
 
----
 jwt:
   header: Authorization
   #echo 'silvernine-tech-spring-boot-jwt-tutorial-secret-silvernine-tech-spring-boot-jwt-tutorial-secret'|base64
