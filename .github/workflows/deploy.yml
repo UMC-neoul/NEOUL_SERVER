@@ -52,7 +52,8 @@ jobs:
           spring.datasource.password: ${{secrets.DB_PASSWORD}}
           jwt.secret : ${{secrets.JWT_SECRET_KEY}}
           jwt.refresh : ${{secrets.JWT_REFRESH_SECRET_KEY}}
-          jwt.token-validity-in-seconds: ${{secrets.JWT_TOKEN_VALIDITY}}
+          jwt.access-token-seconds: ${{secrets.JWT_TOKEN_VALIDITY}}
+          jwt.refresh-token-seconds: ${{secrets.JWT_TOKEN_VALIDITY}}
 
 
       # (3) Gradle build (Test 제외)
