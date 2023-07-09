@@ -8,6 +8,7 @@ on:
 # 환경 변수 설정
 # 생성한 Code Deploy와 S3의 이름을 설정한다.
 env:
+  AWS_REGION: ap-northeast-2
   S3_BUCKET_NAME: neoul-github-actions-bucket
   CODE_DEPLOY_APPLICATION_NAME: neoul-codedeploy-app
   CODE_DEPLOY_DEPLOYMENT_GROUP_NAME: neoul_codedeploy_group

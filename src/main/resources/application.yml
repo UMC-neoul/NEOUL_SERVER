@@ -3,7 +3,6 @@ spring:
     include: real
 
   datasource:
-    AWS_REGION: ap-northeast-2
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: ${db.url}
     username: ${db.username}
