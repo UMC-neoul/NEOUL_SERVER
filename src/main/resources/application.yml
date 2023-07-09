@@ -3,6 +3,7 @@ spring:
     include: real
 
   datasource:
+    AWS_REGION: ap-northeast-2
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: ${db.url}
     username: ${db.username}
@@ -21,7 +22,6 @@ spring:
     pathmatch:
       matching-strategy: ant_path_matcher
 
----
 jwt:
   header: Authorization
   #echo 'silvernine-tech-spring-boot-jwt-tutorial-secret-silvernine-tech-spring-boot-jwt-tutorial-secret'|base64
