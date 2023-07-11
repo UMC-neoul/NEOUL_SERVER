@@ -18,7 +18,7 @@ public class AuthController {
 
     /**
      * 카카오 소셜로그인
-     * https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=6683155e0b612aa910274649f727e377&redirect_uri=http://localhost:8000/oauth/kakao
+     * https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=abf4119e38a436ab64718033228aad2d&redirect_uri=http://localhost:8080/oauth/kakao
      * */
     @ApiOperation(value = "인가코드 캐치를 위한 api, 사용x, 백엔드 터미널로 반환중",
             notes = "원래는 프론트엔드가 첫 회원가입 링크로 들어가서 code를 받고, 그 받은 코드로 이 api에 접근해서" +
