@@ -3,8 +3,6 @@ package com.example.neoul.dto;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
 
-import java.util.Date;
-
 public class BrandReq {
 
     @Builder

@@ -1,7 +1,6 @@
 package com.example.neoul.dto;
 
 import lombok.*;
-
 import java.util.List;
 
 public class BrandRes {
