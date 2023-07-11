@@ -1,4 +1,4 @@
-package com.example.neoul.dto;
+package com.example.neoul.dto.brand;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
