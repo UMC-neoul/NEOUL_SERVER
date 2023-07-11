@@ -46,7 +46,7 @@ public class BrandRes {
     @AllArgsConstructor
     @Setter
     @Getter
-    // content와 content/상세
+    // content와 content/상세 - 브랜드 후원 이야기
     public static class RecruitStoryRes {
         private Long sid; //후원 이야기 id
         private Long bid; //브랜드 id
@@ -62,7 +62,7 @@ public class BrandRes {
     @AllArgsConstructor
     @Setter
     @Getter
-    // (확정x) 프로모션
+    // (확정x) 프로모션 - 브랜드 프로모션
     public static class RecruitPromRes {
         private Long bid; //브랜드 id
         private Long pid; //프로모션 id
@@ -70,6 +70,17 @@ public class BrandRes {
         private String pTitle; // 프로모션 제목
         private String pContent; // 프로모션 내용
         private String createdAt; // 프로모션 생성 일시
+    }
+
+
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
+    @Setter
+    @Getter
+    private static class LikedBrandRes {
+        private Boolean hearted; //true or false
+        private String result; //좋아요 성공 or 좋아요 취소 성공
     }
 
 

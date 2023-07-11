@@ -33,4 +33,17 @@ public class BrandReq {
     }
 
 
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
+    @Setter
+    @Getter
+    public static class LikeBrandReq {
+        @ApiModelProperty(example = "2023-07-10") //클릭 일시
+        private String clickedDate;
+        @ApiModelProperty(example = "12") //클릭한 브랜드 id
+        private Long bid;
+    }
+
+
 }

@@ -1,8 +1,6 @@
 package com.example.neoul.dto;
 
 import lombok.*;
-
-import java.util.Date;
 import java.util.List;
 
 public class ProductRes {
@@ -32,6 +30,15 @@ public class ProductRes {
     }
 
 
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
+    @Setter
+    @Getter
+    private static class LikedProductRes {
+        private Boolean hearted; //true or false
+        private String result; //좋아요 성공 or 좋아요 취소 성공
+    }
 
 
 

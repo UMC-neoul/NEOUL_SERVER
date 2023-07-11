@@ -33,12 +33,26 @@ public class ProductReq {
         private String word;
     }
 
+
     @Builder
     @NoArgsConstructor
     @AllArgsConstructor
     @Setter
     @Getter
     public static class ClickProductReq { //상품 클릭
+        @ApiModelProperty(example = "2023-07-10") //클릭 일시
+        private String clickedDate;
+        @ApiModelProperty(example = "12") //클릭한 상품 id
+        private Long pid;
+    }
+
+
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
+    @Setter
+    @Getter
+    public static class LikeProductReq { //상품 클릭
         @ApiModelProperty(example = "2023-07-10") //클릭 일시
         private String clickedDate;
         @ApiModelProperty(example = "12") //클릭한 상품 id
