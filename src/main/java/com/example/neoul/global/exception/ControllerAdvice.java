@@ -19,7 +19,7 @@ public class ControllerAdvice {
     @ExceptionHandler({BadRequestException.class})
     public ResponseEntity<ApiResponse<String>> handleBadRequestException(BadRequestException e) {
         ApiResponse<String> httpRes = new ApiResponse<>(HttpStatus.BAD_REQUEST.value(), e.getMessage());
-        log.info("BAD_REQUEST 입니당");
+        log.info("BAD_REQUEST 입니다");
         return new ResponseEntity<>(httpRes, HttpStatus.BAD_REQUEST);
     }
 
@@ -28,7 +28,7 @@ public class ControllerAdvice {
     @ExceptionHandler({UnauthorizedException.class})
     public ResponseEntity<ApiResponse<String>> handleUnauthorizedException(UnauthorizedException e) {
         ApiResponse<String> httpRes = new ApiResponse<>(HttpStatus.UNAUTHORIZED.value(), e.getMessage());
-        log.info("UNAUTHORIZED 입니당");
+        log.info("UNAUTHORIZED 입니다");
         return new ResponseEntity<>(httpRes, HttpStatus.UNAUTHORIZED);
     }
 
@@ -37,7 +37,7 @@ public class ControllerAdvice {
     @ExceptionHandler({ServerErrorException.class})
     public ResponseEntity<ApiResponse<String>> handleServerErrorException(ServerErrorException e) {
         ApiResponse<String> httpRes = new ApiResponse<>(HttpStatus.INTERNAL_SERVER_ERROR.value(), e.getMessage());
-        log.info("INTERNAL_SERVER_ERROR 입니당");
+        log.info("INTERNAL_SERVER_ERROR 입니다");
         return new ResponseEntity<>(httpRes, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
@@ -46,7 +46,7 @@ public class ControllerAdvice {
     @ExceptionHandler({NotFoundException.class})
     public ResponseEntity<ApiResponse<String>> handleNotFoundException(NotFoundException e) {
         ApiResponse<String> httpRes = new ApiResponse<>(HttpStatus.NOT_FOUND.value(), e.getMessage());
-        log.info("NOT_FOUND 입니당");
+        log.info("NOT_FOUND 입니다");
         return new ResponseEntity<>(httpRes, HttpStatus.NOT_FOUND);
     }
   
