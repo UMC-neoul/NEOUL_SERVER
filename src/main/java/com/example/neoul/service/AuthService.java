@@ -145,7 +145,7 @@ public class AuthService {
 
             //로그인
             User user=userRepository.findByUsernameAndSocial(String.valueOf(email),socialReq.getSocial());
-            Long userIdx=user.getId();
+            Long userIdx=user.getUserId();
 
             GenerateToken generateToken=tokenProvider.createAllToken(userIdx);
 
