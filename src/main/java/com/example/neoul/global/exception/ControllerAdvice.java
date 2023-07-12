@@ -41,15 +41,7 @@ public class ControllerAdvice {
         return new ResponseEntity<>(httpRes, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
-    //404
-    @ResponseStatus(HttpStatus.NOT_FOUND)
-    @ExceptionHandler({NotFoundException.class})
-    public ResponseEntity<ApiResponse<String>> handleNotFoundException(NotFoundException e) {
-        ApiResponse<String> httpRes = new ApiResponse<>(HttpStatus.NOT_FOUND.value(), e.getMessage());
-        log.info("NOT_FOUND 입니다");
-        return new ResponseEntity<>(httpRes, HttpStatus.NOT_FOUND);
-    }
-  
+
     //MultipartFile 잘못 전달받았을 경우
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler({MultipartException.class})
