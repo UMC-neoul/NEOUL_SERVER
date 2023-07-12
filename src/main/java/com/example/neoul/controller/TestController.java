@@ -21,8 +21,8 @@ public class TestController {
     }
 
 
-    @GetMapping("/")
-    public ApiResponse<String> test2(@RequestParam String s){
+    @GetMapping("")
+    public ApiResponse<String> test2(@RequestParam(required = false) String s){
 
         if("null".equals(s))
             throw new BadRequestException("오류 던지기");
