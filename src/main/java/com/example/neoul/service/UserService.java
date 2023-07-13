@@ -98,7 +98,6 @@ public class UserService {
                 .name(signupUserReq.getName())
                 .imageUrl(signupUserReq.getImageUrl())
                 .authorities(Collections.singletonList(authority))
-                .status(1)
                 .build();
 
         userRepository.save(user);
@@ -127,7 +126,6 @@ public class UserService {
                 .imageUrl(signupUserReq.getImageUrl())
                 //.authorities(Collections.singletonList(authority))
                 .authorities(authorityList)
-                .status(1)
                 .build();
 
         userRepository.save(user);
@@ -154,7 +152,7 @@ public class UserService {
         //String jwt = tokenProvider.createToken(authentication); //인증토큰으로 jwt토큰 생성
 
         User loginUser = userRepository.findUserByUsername(loginUserReq.getUsername()).get();
-        Long userIdx = loginUser.getId();
+        Long userIdx = loginUser.getUserId();
         GenerateToken generateToken = tokenProvider.createAllToken(userIdx);
 
 
@@ -168,8 +166,7 @@ public class UserService {
 
     public String withdrawal() {
         User user = findNowLoginUser();
-
-        user.setStatus(0);
+        
         userRepository.save(user);
 
         return "회원 탈퇴가 완료되었습니다";

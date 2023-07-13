@@ -32,10 +32,10 @@ public class CustomUserDetailsService implements UserDetailsService {
     }
 
     private org.springframework.security.core.userdetails.User createUser(String username, User user) {
-        if (!user.getStatus().equals(1)) {
-            //throw new RuntimeException(username + " -> 활성화되어 있지 않습니다.");
-            throw new RuntimeException(username + " -> 탈퇴하거나 가입되지 않은 회원입니다");
-        }
+//        if (!user.getStatus().equals(1)) {
+//            //throw new RuntimeException(username + " -> 활성화되어 있지 않습니다.");
+//            throw new RuntimeException(username + " -> 탈퇴하거나 가입되지 않은 회원입니다");
+//        }
         List<GrantedAuthority> grantedAuthorities = user.getAuthorities().stream()
                 .map(authority -> new SimpleGrantedAuthority(authority.getAuthorityName()))
                 .collect(Collectors.toList());
