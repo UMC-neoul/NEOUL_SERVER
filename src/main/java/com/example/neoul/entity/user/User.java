@@ -1,4 +1,4 @@
-package com.example.neoul.entity;
+package com.example.neoul.entity.user;
 
 
 import com.example.neoul.global.entity.BaseEntity;
