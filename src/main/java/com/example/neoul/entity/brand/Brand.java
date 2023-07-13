@@ -46,13 +46,13 @@ public class Brand extends BaseEntity {
 
     private Integer hcnt; //브랜드 찜개수
 
-    @CreatedDate
+    /*@CreatedDate
     @Column(name = "created_at", nullable = false, updatable = false) //updatable = false : 수정불가
     private LocalDateTime createdDate; //브랜드 입점 일시
 
     @LastModifiedDate
     @Column(name = "last_modified_at", nullable = false)
-    private LocalDateTime lastModifiedDate;
+    private LocalDateTime lastModifiedDate;*/
 
 
 

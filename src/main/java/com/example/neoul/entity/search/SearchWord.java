@@ -31,9 +31,9 @@ public class SearchWord extends BaseEntity {
 
     private String word;
 
-    @CreatedDate
+    /*@CreatedDate
     @Column(name = "created_at", nullable = false, updatable = false) //updatable = false : 수정불가
-    private LocalDateTime createdDate; //검색어 최초검색 일시 (검색어 생성)
+    private LocalDateTime createdDate; //검색어 최초검색 일시 (검색어 생성)*/
 
     //검색어 검색 일시도 있어야 됨
 

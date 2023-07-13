@@ -38,9 +38,9 @@ public class BrandStory extends BaseEntity {
 
     private String content;
 
-    @CreatedDate
+    /*@CreatedDate
     @Column(name = "created_at", nullable = false, updatable = false) //updatable = false : 수정불가
-    private LocalDateTime createdDate; //후원글 생성 날짜
+    private LocalDateTime createdDate; //후원글 생성 날짜*/
 
 
 

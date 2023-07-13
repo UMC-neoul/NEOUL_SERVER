@@ -32,9 +32,9 @@ public class Notice extends BaseEntity {
     private String ncontent;
 
 
-    @CreatedDate
+   /*@CreatedDate
     @Column(name = "created_at", nullable = false, updatable = false) //updatable = false : 수정불가
-    private LocalDateTime createdDate; //작성 일시
+    private LocalDateTime createdDate; //작성 일시*/
 
 
 
