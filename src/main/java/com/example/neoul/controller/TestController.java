@@ -21,6 +21,7 @@ public class TestController {
     }
 
 
+    //API 응답 반환 형식 예
     @GetMapping("")
     public ApiResponse<String> test2(@RequestParam(required = false) String s){
 
@@ -29,4 +30,5 @@ public class TestController {
 
         return new ApiResponse<>("데이터가 들어갈 자리(문자열, 객체 등");
     }
+
 }
