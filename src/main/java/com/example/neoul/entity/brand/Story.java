@@ -5,12 +5,8 @@ import com.example.neoul.global.entity.BaseEntity;
 import lombok.*;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
-import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
-import java.util.HashSet;
-import java.util.Set;
 
 
 @DynamicInsert
@@ -22,7 +18,7 @@ import java.util.Set;
 @AllArgsConstructor
 @Table(name = "story")
 @Entity
-public class BrandStory extends BaseEntity {
+public class Story extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -48,13 +44,13 @@ public class BrandStory extends BaseEntity {
 
 
     //TODO dto로 수정하기 나중에
-    public static BrandStory recruitBrand() {
+    public static Story recruitBrand() {
 
-        BrandStory brandStory = BrandStory.builder()
+        Story story = Story.builder()
 
                 .build();
 
-        return brandStory;
+        return story;
     }
 
 }

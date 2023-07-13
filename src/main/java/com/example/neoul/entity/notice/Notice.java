@@ -25,16 +25,13 @@ public class Notice extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Column(name = "notice_id")
+    private Long noticeId;
 
-    private String ntitle;
+    private String title;
 
-    private String ncontent;
+    private String content;
 
-
-   /*@CreatedDate
-    @Column(name = "created_at", nullable = false, updatable = false) //updatable = false : 수정불가
-    private LocalDateTime createdDate; //작성 일시*/
 
 
 
