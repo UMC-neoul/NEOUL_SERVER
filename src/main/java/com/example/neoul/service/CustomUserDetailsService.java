@@ -1,7 +1,7 @@
 package com.example.neoul.service;
 
 
-import com.example.neoul.entity.User;
+import com.example.neoul.entity.user.User;
 import com.example.neoul.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
