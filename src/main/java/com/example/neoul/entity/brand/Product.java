@@ -29,31 +29,24 @@ public class Product extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Column(name = "product_id")
+    private Long productId;
 
-    private Long bid; //브랜드 id
+    @Column(name = "brand_id") //기본 0
+    private Long brandId; //브랜드 id
 
-    @Column(columnDefinition = "TINYINT(0)") //기본 0
-    private Integer cid; //카테고리 id - 후에 int로 반환되게
+    @Column(name = "category_id")
+    private Long categoryId;
 
-    private String pname;
+    private String name;
 
-    private Long price;
+    private Integer price;
 
-    @ElementCollection(fetch = FetchType.LAZY)
-    private Set<String> pimglist = new HashSet<String>();
+    @Column(name = "delivery_info")
+    private String deliveryInfo; //배송정보
 
-    private String pdeliveryinfo; //배송정보
-
-    private String purl; //상풍 상세 url
-
-    private Integer plikecnt; //찜개수
-
-    /*@CreatedDate
-    @Column(name = "created_at", nullable = false, updatable = false) //updatable = false : 수정불가
-    private LocalDateTime createdDate; //상품 업로드 날짜*/
-
-
+    @Column(name = "product_url")
+    private String productUrl; //상풍 상세 url
 
 
 
