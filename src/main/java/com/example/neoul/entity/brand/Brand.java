@@ -23,28 +23,22 @@ import java.time.LocalDateTime;
 @Entity
 public class Brand extends BaseEntity {
 
+    @Column(name = "category_id", columnDefinition = "TINYINT(0)") //기본 0
+    private Integer categoryId; //카테고리 id - 후에 int로 반환되게
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Column(name = "brand_id")
+    private Long brandId;
 
-    private String bname;
+    @Column(name = "name")
+    private String name;
 
-    @Column(name = "b_profile_img")
-    private String bprofileimg;
+    @Column(name = "intro")
+    private String intro;
 
-    @Column(columnDefinition = "TINYINT(0)") //기본 0
-    private Integer cid; //카테고리 id - 후에 int로 반환되게
-
-    private String bintro;
-
-    private Integer sid; //후원story id
-
-    private Integer promid; //프로모션 id
-
-    private Integer hid; //해시태그 id
-
-    private Integer hcnt; //브랜드 찜개수
+    @Column(name = "img")
+    private String profileImg;
 
     /*@CreatedDate
     @Column(name = "created_at", nullable = false, updatable = false) //updatable = false : 수정불가
@@ -53,10 +47,6 @@ public class Brand extends BaseEntity {
     @LastModifiedDate
     @Column(name = "last_modified_at", nullable = false)
     private LocalDateTime lastModifiedDate;*/
-
-
-
-
 
 
     //TODO dto로 수정하기 나중에

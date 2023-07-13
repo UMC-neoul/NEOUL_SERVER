@@ -20,33 +20,31 @@ import java.util.Set;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "brandstory")
+@Table(name = "story")
 @Entity
 public class BrandStory extends BaseEntity {
 
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Column(name = "story_id")
+    private Long storyId;
 
-    private Long bid; //브랜드 id
+    @Column(name = "brand_id")
+    private Long brandId; //브랜드 id
 
-    @Column(name = "pre_img")
-    private String preimg;
+    @Column(name = "img")
+    private String img;
 
+    @Column(name = "title")
     private String title;
 
+    @Column(name = "content")
     private String content;
+
 
     /*@CreatedDate
     @Column(name = "created_at", nullable = false, updatable = false) //updatable = false : 수정불가
     private LocalDateTime createdDate; //후원글 생성 날짜*/
-
-
-
-
-
-
 
 
     //TODO dto로 수정하기 나중에
