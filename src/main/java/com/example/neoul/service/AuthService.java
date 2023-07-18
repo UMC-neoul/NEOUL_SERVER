@@ -158,23 +158,6 @@ public class AuthService {
         return null;
     }
 
- /*
-    //회원가입과 로그인 분리
-    public TokenRes loginKakaoUser(UserReq.SocialLoginUserReq socialLoginUserReq) {
-        if(userRepository.existsByUsernameAndSocial(socialLoginUserReq.getUsername(), socialLoginUserReq.getSocial())){
-            User user = userRepository.findByUsernameAndSocial(socialLoginUserReq.getUsername(), socialLoginUserReq.getSocial());
-
-            GenerateToken generateToken = tokenProvider.createAllToken(user.getIdx());
-
-            return new TokenRes(user.getUsername(), generateToken.getAccessToken(), generateToken.getRefreshToken());
-
-        }
-
-        return null;
-    }
-
- */
-
 
 
 }
