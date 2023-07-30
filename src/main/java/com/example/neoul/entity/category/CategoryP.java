@@ -22,7 +22,8 @@ public class CategoryP {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer category_id;
+    @Column(name = "pcatogery_id")
+    private Integer pcategory_id;
 
     @Column(name = "name")
     private String categoryName;
