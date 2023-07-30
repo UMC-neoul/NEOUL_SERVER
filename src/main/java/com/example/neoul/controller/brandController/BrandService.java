@@ -28,8 +28,8 @@ public class BrandService {
         for(Brand brand : brandList){
             BrandRes.BrandListRes brandListRes = BrandRes.BrandListRes.builder()
                     .bid(brand.getBrandId())
-                    .cid(brand.getBrandVCategory().getCategory_id())
-//                    .category(brand.get())
+                    .categoryVId(brand.getBrandVCategory().getVcategory_id())
+                    .categoryVName(brand.getBrandVCategory().getName())
                     .bName(brand.getName())
                     .bIntro(brand.getIntro())
                     .bProfileImg(brand.getProfileImg())
@@ -44,8 +44,8 @@ public class BrandService {
         Brand brand = brandRepository.findById(brandId).get(); // 실패시 exception 발생
         BrandRes.BrandInfoRes brandInfo = BrandRes.BrandInfoRes.builder()
                 .bid(brand.getBrandId())
-                .cid(brand.getBrandVCategory().getCategory_id())
-//                    .category(brand.get())
+                .categoryVId(brand.getBrandVCategory().getVcategory_id())
+                .categoryVName(brand.getBrandVCategory().getName())
                 .bName(brand.getName())
                 .bIntro(brand.getIntro())
                 .bProfileImg(brand.getProfileImg())

@@ -1,7 +1,7 @@
 package com.example.neoul.entity.brand;
 
 
-import com.example.neoul.entity.category.VCategory.VCategory;
+import com.example.neoul.entity.category.CategoryV;
 import com.example.neoul.global.entity.BaseEntity;
 import lombok.*;
 import org.hibernate.annotations.DynamicInsert;
@@ -40,7 +40,7 @@ public class Brand extends BaseEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "vcategory_id")
-    private VCategory brandVCategory;
+    private CategoryV brandVCategory;
 
 //    private Integer bLikeCNT; //브랜드 찜개수
 //    private Boolean bHearted; //브랜드 찜 여부 true false

@@ -29,10 +29,6 @@ public class CategoryP {
 
 
 
-
-
-
-
     //TODO dto로 수정하기 나중에
     public static CategoryP recruitBrand() {
 

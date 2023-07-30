@@ -1,7 +1,7 @@
 package com.example.neoul.entity.brand;
 
 
-import com.example.neoul.entity.category.VCategory.VCategory;
+import com.example.neoul.entity.category.CategoryV;
 import com.example.neoul.global.entity.BaseEntity;
 import lombok.*;
 import org.hibernate.annotations.DynamicInsert;
@@ -40,7 +40,7 @@ public class Story extends BaseEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "vcategory_id")
-    private VCategory storyVCategory;
+    private CategoryV storyVCategory;
 
 
     /*@CreatedDate

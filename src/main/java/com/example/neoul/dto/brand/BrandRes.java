@@ -18,8 +18,8 @@ public class BrandRes {
     // brand (전체)
     public static class BrandListRes {
         private Long bid; //브랜드 id
-        private Long cid; //카테고리 id
-        private String category; //브랜드 카테고리
+        private Long categoryVId; //카테고리 id
+        private String categoryVName; // 후원 카테고리 이름
         private String bName; //브랜드 이름
         private String bIntro; //한 줄소개
         private String bProfileImg; //브랜드 프로필 이미지
@@ -41,8 +41,8 @@ public class BrandRes {
     // brand/상세
     public static class BrandInfoRes {
         private Long bid; //브랜드 id
-        private Long cid; //카테고리 id
-        private String category; //브랜드 카테고리
+        private Long categoryVId; //카테고리 id
+        private String categoryVName; // 후원 카테고리 이름
         private String bName; //브랜드 이름
         private String bIntro; //한 줄소개
         private String bProfileImg; //브랜드 프로필 이미지
