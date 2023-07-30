@@ -25,8 +25,8 @@ public class Story extends BaseEntity {
     @Column(name = "story_id")
     private Long storyId;
 
-    @Column(name = "brand_id")
-    private Long brandId; //브랜드 id
+    @Column(name = "vcategory_id")
+    private Long vcategoryId;
 
     @Column(name = "img")
     private String img;

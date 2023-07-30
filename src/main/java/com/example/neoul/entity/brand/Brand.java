@@ -23,13 +23,15 @@ import java.time.LocalDateTime;
 @Entity
 public class Brand extends BaseEntity {
 
-    @Column(name = "category_id", columnDefinition = "TINYINT(0)") //기본 0
-    private Integer categoryId; //카테고리 id - 후에 int로 반환되게
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "brand_id")
     private Long brandId;
+
+    @Column(name = "vcategory_id")
+    private Long vcategoryId;
 
     @Column(name = "name")
     private String name;

@@ -35,8 +35,8 @@ public class Product extends BaseEntity {
     @Column(name = "brand_id") //기본 0
     private Long brandId; //브랜드 id
 
-    @Column(name = "category_id")
-    private Long categoryId;
+    @Column(name = "pcategory_id") //pcategory_id
+    private Long pcategoryId;
 
     private String name;
 
