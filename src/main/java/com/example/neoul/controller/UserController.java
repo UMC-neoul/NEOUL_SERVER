@@ -2,6 +2,7 @@ package com.example.neoul.controller;
 
 
 import com.example.neoul.service.UserService;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -11,6 +12,7 @@ import java.io.UnsupportedEncodingException;
 
 @RequiredArgsConstructor
 @RestController
+@Api(tags={"01.user"})
 @RequestMapping("/user")
 public class UserController {
 
