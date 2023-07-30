@@ -42,6 +42,10 @@ public class User extends BaseEntity {
 
     private String social;
 
+    @Column(name = "first_login")
+    private boolean firstLogin;
+
+
 
 
     @JsonIgnore

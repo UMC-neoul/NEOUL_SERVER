@@ -2,6 +2,8 @@ package com.example.neoul.controller;
 
 import com.example.neoul.global.entity.ApiResponse;
 import com.example.neoul.global.exception.BadRequestException;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @Slf4j
 @RestController
+@Api(tags={"00.test"})
 @RequestMapping("/test")
 public class TestController {
     @GetMapping("/testapi")
@@ -21,7 +24,7 @@ public class TestController {
     }
 
 
-    //API 응답 반환 형식 예
+    @ApiOperation(value = "API 응답 반환 형식 예", notes = "API 응답 반환 형식 예")
     @GetMapping("")
     public ApiResponse<String> test2(@RequestParam(required = false) String s){
 
