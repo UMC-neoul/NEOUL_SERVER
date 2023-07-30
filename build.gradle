@@ -43,6 +43,11 @@ dependencies {
 	// gson
 	implementation 'com.google.code.gson:gson:2.9.0'
 
+	//implementation 'io.awspring.cloud:spring-cloud-starter-aws:2.3.5'
+	//implementation 'org.springframework.cloud:spring-cloud-start-aws:2.0.1.RELEASE'
+	//implementation 'org.springframework.cloud:spring-cloud-starter-aws:2.2.6.RELEASE'
+
+
 	implementation 'org.json:json:20200518'
 
 

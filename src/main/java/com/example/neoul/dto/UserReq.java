@@ -10,7 +10,7 @@ public class UserReq {
     @AllArgsConstructor
     @Setter
     @Getter
-    public static class LoginUserReq {
+    public static class LoginUserDto {
         @ApiModelProperty(example = "test1@naver.com")
         private String username;
         @ApiModelProperty(example = "test1234")
@@ -22,7 +22,7 @@ public class UserReq {
     @AllArgsConstructor
     @Setter
     @Getter
-    public static class SocialLoginUserReq {
+    public static class SocialLoginUserDto {
         @ApiModelProperty(example = "test@gmail.com")
         private String username;
         @ApiModelProperty(example = "kakao")
@@ -37,14 +37,11 @@ public class UserReq {
     @AllArgsConstructor
     @Setter
     @Getter
-    public static class SignupUserReq {
+    public static class SignupUserDto {
         private String username;
         private String password;
         private String name;
         private String imageUrl;
-
-        @ApiModelProperty(example = "true or false")
-        private boolean emailVerified;
     }
     
 
@@ -53,7 +50,7 @@ public class UserReq {
     @AllArgsConstructor
     @Setter
     @Getter
-    public static class EmailAuthReq {
+    public static class EmailAuthDto {
         private String email;
     }
 

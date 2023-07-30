@@ -136,19 +136,27 @@ public class AuthService {
 
             //카카오 계정의 이메일과 현재 일반 회원가입한 이메일 중에서 같은 것이 없다면 카카오 계정의 이메일로 회원가입
             if(!userRepository.existsByUsernameAndSocial(String.valueOf(email),socialReq.getSocial())){
-                User user= User.toSocialLoginUser(String.valueOf(email),socialReq.getSocial(),name);
+                User user = User.toSocialLoginUser(String.valueOf(email),socialReq.getSocial(),name);
 
                 userRepository.save(user);
             }
             br.close();
 
             //로그인
-            User user=userRepository.findByUsernameAndSocial(String.valueOf(email),socialReq.getSocial());
-            Long userIdx=user.getUserId();
+            User user = userRepository.findByUsernameAndSocial(String.valueOf(email),socialReq.getSocial());
+            Long userId = user.getUserId();
 
-            GenerateToken generateToken=tokenProvider.createAllToken(userIdx);
+            GenerateToken generateToken = tokenProvider.createAllToken(userId);
 
-            return new TokenRes(name,generateToken.getAccessToken(),generateToken.getRefreshToken());
+            boolean isFirstLogin = user.isFirstLogin();
+            user.setFirstLogin(false); //첫 로그인 이후는 전부 0으로 바꾸기
+
+            return TokenRes.builder()
+                    .username(user.getUsername())
+                    .firstLogin(isFirstLogin)
+                    .accessToken(generateToken.getAccessToken())
+                    .refreshToken(generateToken.getRefreshToken())
+                    .build();
 
 
         } catch (IOException e) {
