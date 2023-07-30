@@ -1,7 +1,6 @@
 package com.example.neoul.entity.category;
 
 
-import com.example.neoul.global.entity.BaseEntity;
 import lombok.*;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
@@ -16,9 +15,9 @@ import javax.persistence.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "category")
+@Table(name = "category_v")
 @Entity
-public class Category {
+public class CategoryV {
 
 
     @Id
@@ -35,9 +34,9 @@ public class Category {
 
 
     //TODO dto로 수정하기 나중에
-    public static Category recruitBrand() {
+    public static CategoryV recruitBrand() {
 
-        Category brandStory = Category.builder()
+        CategoryV brandStory = CategoryV.builder()
 
                 .build();
 
