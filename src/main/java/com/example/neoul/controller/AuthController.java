@@ -2,6 +2,7 @@ package com.example.neoul.controller;
 
 import com.example.neoul.dto.TokenRes;
 import com.example.neoul.dto.UserReq;
+import com.example.neoul.global.entity.ApiResponse;
 import com.example.neoul.global.entity.BaseEntity;
 import com.example.neoul.global.exception.BadRequestException;
 import com.example.neoul.service.AuthService;
@@ -29,12 +30,12 @@ public class AuthController {
                     "카카오의 access_token을 반환 후" +
                     "access_token을 /kakao/login의 요청에 넣어서 우리 사이트의 로그인하고 그 결과를 얻음")
     @GetMapping("/kakao")
-    public String getAccessTokenKakao(@RequestParam String code) {
+    public ApiResponse<String> getAccessTokenKakao(@RequestParam String code) {
         String accessToken=authService.getKakaoAccessToken(code);
         System.out.println("code for kakaoServer : " + code);
         System.out.println("for /oauth/kakao : " + accessToken);
 
-        return accessToken;
+        return new ApiResponse<>(accessToken);
     }
 
     @ApiOperation(value = "카카오 로그인", notes = "카카오 로그인")

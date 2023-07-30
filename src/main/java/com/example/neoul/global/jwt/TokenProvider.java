@@ -84,14 +84,14 @@ public class TokenProvider implements InitializingBean {
 //                .compact();
 //    }
 
-    public String createToken(Long userIdx) {
+    public String createToken(Long userId) {
 
         long now = (new Date()).getTime();
         Date validity = new Date(now + this.accessTime);
 
         return Jwts.builder()
                 //.setSubject(authentication.getName())
-                .claim("userIdx",userIdx)
+                .claim("userId",userId)
                 .setIssuedAt(new Date())
                 //.claim(AUTHORITIES_KEY, authorities)
                 .signWith(SignatureAlgorithm.HS512, secret)
@@ -99,14 +99,14 @@ public class TokenProvider implements InitializingBean {
                 .compact();
     }
 
-    public String createRefreshToken(Long userIdx) {
+    public String createRefreshToken(Long userId) {
 
         long now = (new Date()).getTime();
         Date validity = new Date(now + this.refreshTime);
 
         return Jwts.builder()
                 //.setSubject(authentication.getName())
-                .claim("userIdx",userIdx)
+                .claim("userId",userId)
                 .setIssuedAt(new Date())
                 //.claim(AUTHORITIES_KEY, authorities)
                 .signWith(SignatureAlgorithm.HS512, refreshSecret)
@@ -115,12 +115,12 @@ public class TokenProvider implements InitializingBean {
     }
 
 
-    public GenerateToken createAllToken(Long userIdx){
-        String accessToken=createToken(userIdx);
-        String refreshToken=createRefreshToken(userIdx);
+    public GenerateToken createAllToken(Long userId){
+        String accessToken = createToken(userId);
+        String refreshToken = createRefreshToken(userId);
 
 //        //redis에 리프레시토큰 저장
-//        redisService.saveToken(String.valueOf(userIdx),refreshToken, (System.currentTimeMillis()+ refreshTime*1000));
+//        redisService.saveToken(String.valueOf(userId),refreshToken, (System.currentTimeMillis()+ refreshTime*1000));
 
         return new GenerateToken(accessToken,refreshToken);
     }
