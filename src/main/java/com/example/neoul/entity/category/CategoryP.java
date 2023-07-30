@@ -1,7 +1,6 @@
 package com.example.neoul.entity.category;
 
 
-import com.example.neoul.global.entity.BaseEntity;
 import lombok.*;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
@@ -16,14 +15,15 @@ import javax.persistence.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "category")
+@Table(name = "category_p")
 @Entity
-public class Category {
+public class CategoryP {
 
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer category_id;
+    @Column(name = "pcatogery_id")
+    private Integer pcategory_id;
 
     @Column(name = "name")
     private String categoryName;
@@ -35,9 +35,9 @@ public class Category {
 
 
     //TODO dto로 수정하기 나중에
-    public static Category recruitBrand() {
+    public static CategoryP recruitBrand() {
 
-        Category brandStory = Category.builder()
+        CategoryP brandStory = CategoryP.builder()
 
                 .build();
 
