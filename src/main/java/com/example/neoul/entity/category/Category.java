@@ -16,13 +16,13 @@ import javax.persistence.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "category")
+@Table(name = "category_p")
 @Entity
 public class Category {
 
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "pcategory_id")
     private Integer category_id;
 
     @Column(name = "name")
