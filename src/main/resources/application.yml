@@ -2,30 +2,30 @@ spring:
   profiles:
     include: real
 
-    datasource:
-      driver-class-name: com.mysql.cj.jdbc.Driver
-      url: ${db.url}
-      username: ${db.username}
-      password: ${db.password}
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: ${db.url}
+    username: ${db.username}
+    password: ${db.password}
 
-      jpa:
+    jpa:
+      hibernate:
+        ddl-auto: update
+      show-sql: true
+      properties:
         hibernate:
-          ddl-auto: update
-        show-sql: true
-        properties:
-          hibernate:
-            format_sql: true
-        defer-datasource-initialization: true
+          format_sql: true
+      defer-datasource-initialization: true
 
-      mvc:
-        pathmatch:
-          matching-strategy: ant_path_matcher
+    mvc:
+      pathmatch:
+        matching-strategy: ant_path_matcher
 
-    jwt:
-      header: Authorization
-      #echo 'silvernine-tech-spring-boot-jwt-tutorial-secret-silvernine-tech-spring-boot-jwt-tutorial-secret'|base64
-      secret: ${jwt.secret}
-      #token-validity-in-seconds: 86400
-      refresh: ${jwt.refresh}
-      access-token-seconds: ${jwt.token_validate}
-      refresh-token-seconds: ${jwt.token_validate}
+jwt:
+  header: Authorization
+  #echo 'silvernine-tech-spring-boot-jwt-tutorial-secret-silvernine-tech-spring-boot-jwt-tutorial-secret'|base64
+  secret: ${jwt.secret}
+  #token-validity-in-seconds: 86400
+  refresh: ${jwt.refresh}
+  access-token-seconds: ${jwt.token_validate}
+  refresh-token-seconds: ${jwt.token_validate}
