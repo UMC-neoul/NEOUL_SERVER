@@ -33,6 +33,12 @@ public class BrandRes {
 //        private Boolean bHearted; //브랜드 찜 여부 true false
     }
 
+//    public static class ProductSimple{
+//        private Long productId;
+//        private String name;
+//    }
+
+
     @Builder
     @NoArgsConstructor
     @AllArgsConstructor
