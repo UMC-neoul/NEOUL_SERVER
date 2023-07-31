@@ -23,7 +23,8 @@ public class ProductImage {
     private Long id;
 
     @Column(name = "product_id")
-    private Long productId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Product product;
 
     private String url;
 

@@ -34,6 +34,7 @@ public class CategoryV {
 
 
 
+    //이건 그냥 리포지토리에서 ALL로 불러와도 될 듯!
     // story 들에 대한 관계
     @OneToMany(mappedBy = "storyVCategory")
     private List<Story> stories = new ArrayList<Story>();
