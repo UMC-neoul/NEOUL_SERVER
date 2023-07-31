@@ -139,9 +139,10 @@ public class TokenProvider implements InitializingBean {
 //                        .map(SimpleGrantedAuthority::new)
 //                        .collect(Collectors.toList());
 
-        Long userIdx = claims.get("userId",Long.class);
+        Long userId = claims.get("userId",Long.class);
 
-        User user = userRepository.findUserByUserId(userIdx).get();
+
+        User user = userRepository.findUserByUserId(userId).get();
         String userName = user.getUsername();
 
         UserDetails userDetails = customUserDetailsService.loadUserByUsername(userName);
