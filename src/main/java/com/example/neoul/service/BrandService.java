@@ -33,7 +33,7 @@ public class BrandService {
                     .bName(brand.getName())
                     .bIntro(brand.getIntro())
                     .bProfileImg(brand.getProfileImg())
-                    .products(productRepository.findAllByBrandId(brand.getBrandId()))
+                    .products(productRepository.findAllByBrand(brand))
                     .build();
             responseList.add(brandListRes);
         }
@@ -49,7 +49,7 @@ public class BrandService {
                 .bName(brand.getName())
                 .bIntro(brand.getIntro())
                 .bProfileImg(brand.getProfileImg())
-                .products(productRepository.findAllByBrandId(brand.getBrandId()))
+                .products(productRepository.findAllByBrand(brand))
 //                .hashTag() // 해시태그 내용
 //                .bCreatedAt()
 //                .bLikeCNT() // 찜개수

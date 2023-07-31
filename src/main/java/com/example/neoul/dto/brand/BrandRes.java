@@ -24,7 +24,7 @@ public class BrandRes {
         private String bIntro; //한 줄소개
         private String bProfileImg; //브랜드 프로필 이미지
 
-        private List<Product> products;
+        private List<Product> products; //TODO -> 이것도 DTO로 반환처리 해야 할 것 같아!
 //        private Long hid; //해시태그 id
 //        private List<String> hashTag; //해시태그 내용
 
@@ -47,10 +47,10 @@ public class BrandRes {
         private String bIntro; //한 줄소개
         private String bProfileImg; //브랜드 프로필 이미지
 
-        private List<Product> products;
+        private List<Product> products; //TODO -> 이것도 DTO로 반환처리 해야 할 것 같아!
 
         //        private Long hid; //해시태그 id
-        private List<String> hashTag; //해시태그 내용
+        private List<String> hashTag; //해시태그 내용 //TODO -> 이것도 DTO로 반환처리 해야 할 것 같아!
 
         private String bCreatedAt; //입점일시
         private Integer bLikeCNT; //브랜드 찜개수
@@ -82,7 +82,7 @@ public class BrandRes {
     @Getter
     // (확정x) 프로모션 - 브랜드 프로모션
     public static class RecruitPromRes {
-        private Long bid; //브랜드 id
+        private Long bid; //브랜드 id //TODO -> 반환할 땐 요약하지 말고 최대한 자세히 적어주기!!
         private Long pid; //프로모션 id
         private String promImg; // 프로모션 배너 이미지
         private String pTitle; // 프로모션 제목
