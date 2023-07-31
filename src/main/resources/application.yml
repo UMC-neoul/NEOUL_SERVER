@@ -2,24 +2,24 @@ spring:
   profiles:
     include: real
 
-    datasource:
-      driver-class-name: com.mysql.cj.jdbc.Driver
-      url: ${db.url}
-      username: ${db.username}
-      password: ${db.password}
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: ${db.url}
+    username: ${db.username}
+    password: ${db.password}
 
-      jpa:
+    jpa:
+      hibernate:
+        ddl-auto: update
+      show-sql: true
+      properties:
         hibernate:
-          ddl-auto: update
-        show-sql: true
-        properties:
-          hibernate:
-            format_sql: true
-        defer-datasource-initialization: true
+          format_sql: true
+      defer-datasource-initialization: true
 
-      mvc:
-        pathmatch:
-          matching-strategy: ant_path_matcher
+    mvc:
+      pathmatch:
+        matching-strategy: ant_path_matcher
 
 jwt:
   header: Authorization
