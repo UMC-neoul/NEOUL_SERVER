@@ -28,6 +28,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 @RequiredArgsConstructor
@@ -92,8 +94,8 @@ public class UserService {
                 .username(signupUserDto.getUsername())
                 .password(passwordEncoder.encode(signupUserDto.getPassword()))
                 .name(signupUserDto.getName())
+                .phone(signupUserDto.getPhone())
                 .imageUrl(signupUserDto.getImageUrl())
-
                 .authorities(Collections.singletonList(authority))
                 .build();
 
@@ -102,6 +104,16 @@ public class UserService {
         return UserRes.UserDetailDto.toDto(user);
     }
 
+    //전화번호 양식 체크
+    public boolean validationEmail(String email){
+        Pattern pattern = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$");
+        Matcher matcher = pattern.matcher(email);
+        if (matcher.matches()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
 
 //    public User signupADMIN(UserReq.SignupUserDto signupUserDto) {
