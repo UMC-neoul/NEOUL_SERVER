@@ -22,7 +22,7 @@ public class UserSearchWord extends BaseEntity {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "user_id")
+    @JoinColumn(name = "user_id")
     @ManyToOne(fetch = FetchType.LAZY)
     private User user;
 

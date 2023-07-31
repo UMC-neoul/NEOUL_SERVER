@@ -22,7 +22,7 @@ public class ProductImage {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "product_id")
+    @JoinColumn(name = "product_id")
     @ManyToOne(fetch = FetchType.LAZY)
     private Product product;
 

@@ -22,11 +22,11 @@ public class UserLikedProduct {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "user_id")
+    @JoinColumn(name = "user_id")
     @ManyToOne(fetch = FetchType.LAZY)
     private User user;
 
-    @Column(name = "product_id")
+    @JoinColumn(name = "product_id")
     @ManyToOne(fetch = FetchType.LAZY)
     private Product product;
 }

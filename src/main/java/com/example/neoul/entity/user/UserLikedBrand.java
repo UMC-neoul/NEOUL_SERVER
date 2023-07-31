@@ -22,11 +22,11 @@ public class UserLikedBrand {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "user_id")
+    @JoinColumn(name = "user_id")
     @ManyToOne(fetch = FetchType.LAZY)
     private User user;
 
-    @Column(name = "brand_id")
+    @JoinColumn(name = "brand_id")
     @ManyToOne(fetch = FetchType.LAZY)
     private Brand brand;
 }

@@ -34,8 +34,9 @@ public class Product extends BaseEntity {
     @Column(name = "product_id")
     private Long productId;
 
-    @Column(name = "brand_id") //기본 0
-    private Long brandId; //브랜드 id
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "brand_id") //기본 0
+    private Brand brand; //브랜드 id
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "pcategory_id")
