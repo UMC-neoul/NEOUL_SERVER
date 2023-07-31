@@ -139,7 +139,7 @@ public class TokenProvider implements InitializingBean {
 //                        .map(SimpleGrantedAuthority::new)
 //                        .collect(Collectors.toList());
 
-        Long userIdx = claims.get("userIdx",Long.class);
+        Long userIdx = claims.get("userId",Long.class);
 
         User user = userRepository.findUserByUserId(userIdx).get();
         String userName = user.getUsername();

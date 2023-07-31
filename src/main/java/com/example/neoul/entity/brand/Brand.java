@@ -1,15 +1,13 @@
 package com.example.neoul.entity.brand;
 
 
+import com.example.neoul.entity.category.CategoryV;
 import com.example.neoul.global.entity.BaseEntity;
 import lombok.*;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
 
 
 @DynamicInsert
@@ -23,15 +21,13 @@ import java.time.LocalDateTime;
 @Entity
 public class Brand extends BaseEntity {
 
-
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "brand_id")
     private Long brandId;
 
-    @Column(name = "vcategory_id")
-    private Long vcategoryId;
+//    @Column(name = "vcategory_id")
+//    private Long vcategoryId;
 
     @Column(name = "name")
     private String name;
@@ -41,6 +37,16 @@ public class Brand extends BaseEntity {
 
     @Column(name = "img")
     private String profileImg;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "vcategory_id")
+    private CategoryV brandVCategory;
+
+//    private Integer bLikeCNT; //브랜드 찜개수
+//    private Boolean bHearted; //브랜드 찜 여부 true false
+
+
+
 
     /*@CreatedDate
     @Column(name = "created_at", nullable = false, updatable = false) //updatable = false : 수정불가
