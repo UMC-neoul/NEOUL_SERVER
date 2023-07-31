@@ -141,6 +141,7 @@ public class TokenProvider implements InitializingBean {
 
         Long userId = claims.get("userId",Long.class);
 
+
         User user = userRepository.findUserByUserId(userId).get();
         String userName = user.getUsername();
 

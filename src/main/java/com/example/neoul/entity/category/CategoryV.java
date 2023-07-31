@@ -1,11 +1,15 @@
 package com.example.neoul.entity.category;
 
 
+import com.example.neoul.entity.brand.Brand;
+import com.example.neoul.entity.brand.Story;
 import lombok.*;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @DynamicInsert
@@ -19,16 +23,24 @@ import javax.persistence.*;
 @Entity
 public class CategoryV {
 
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "vcatogery_id")
+    @Column(name = "vcategory_id")
     private Long vcategory_id;
 
     @Column(name = "name")
     private String name;
 
 
+
+
+    // story 들에 대한 관계
+    @OneToMany(mappedBy = "storyVCategory")
+    private List<Story> stories = new ArrayList<Story>();
+
+    // brand 들에 대한 관계
+    @OneToMany(mappedBy = "brandVCategory")
+    private List<Brand> brands = new ArrayList<Brand>();
 
 
 

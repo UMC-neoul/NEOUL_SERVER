@@ -19,7 +19,6 @@ import javax.persistence.*;
 @Entity
 public class CategoryP {
 
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "pcatogery_id")
@@ -27,10 +26,6 @@ public class CategoryP {
 
     @Column(name = "name")
     private String name;
-
-
-
-
 
 
 
