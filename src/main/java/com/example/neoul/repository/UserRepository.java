@@ -1,6 +1,6 @@
 package com.example.neoul.repository;
 
-import com.example.neoul.entity.User;
+import com.example.neoul.entity.user.User;
 import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -18,7 +18,10 @@ public interface UserRepository extends JpaRepository<User, Long> {
     Optional<User> findUserByUsername(String email);
 
 
-    Optional<User> findUserById(Long userId);
+    Optional<User> findUserByUserId(Long userId);
 
 
+    User findByUsernameAndSocial(String username, String social);
+
+    boolean existsByUsernameAndSocial(String username, String social);
 }

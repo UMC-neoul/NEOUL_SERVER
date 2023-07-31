@@ -5,8 +5,10 @@ import com.example.neoul.dto.GenerateToken;
 import com.example.neoul.dto.TokenRes;
 import com.example.neoul.dto.UserReq;
 import com.example.neoul.dto.UserRes;
-import com.example.neoul.entity.Authority;
-import com.example.neoul.entity.User;
+import com.example.neoul.entity.user.Authority;
+import com.example.neoul.entity.user.User;
+import com.example.neoul.global.exception.BadRequestException;
+import com.example.neoul.global.exception.ServerErrorException;
 import com.example.neoul.global.jwt.JwtFilter;
 import com.example.neoul.global.jwt.TokenProvider;
 import com.example.neoul.repository.UserRepository;
@@ -25,6 +27,9 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 @RequiredArgsConstructor
@@ -45,11 +50,11 @@ public class UserService {
 
         String username = SecurityUtil.getCurrentUsername().orElse(null);
 
-        if(username != null){
-            return userRepository.findUserByUsername(username).get();
+        if(username == null){
+            throw new ServerErrorException("accessToken이 없습니다");
         }
 
-        return null;
+        return userRepository.findUserByUsername(username).get();
     }
 
     public List<Authority> giveUSER(){
@@ -74,18 +79,11 @@ public class UserService {
     }
 
 
-    public List<Authority> giveWRITER(List<Authority> authorityList){
-        Authority roleWriter = new Authority("ROLE_WRITER");
-        authorityList.add(roleWriter);
-
-        return authorityList;
-    }
-
 
     @Transactional
-    public User signup(UserReq.SignupUserReq signupUserReq) {
-        if (userRepository.findUserWithAuthoritiesByUsername(signupUserReq.getUsername()).orElse(null) != null) {
-            throw new RuntimeException("이미 가입되어 있는 유저입니다.");
+    public UserRes.UserDetailDto signup(UserReq.SignupUserDto signupUserDto) {
+        if (userRepository.findUserWithAuthoritiesByUsername(signupUserDto.getUsername()).orElse(null) != null) {
+            throw new BadRequestException("이미 가입되어 있는 유저입니다.");
         }
 
         Authority authority = Authority.builder()
@@ -93,83 +91,106 @@ public class UserService {
                 .build();
 
         User user = User.builder()
-                .username(signupUserReq.getUsername())
-                .password(passwordEncoder.encode(signupUserReq.getPassword()))
-                .name(signupUserReq.getName())
-                .imageUrl(signupUserReq.getImageUrl())
+                .username(signupUserDto.getUsername())
+                .password(passwordEncoder.encode(signupUserDto.getPassword()))
+                .name(signupUserDto.getName())
+                .phone(signupUserDto.getPhone())
+                .imageUrl(signupUserDto.getImageUrl())
                 .authorities(Collections.singletonList(authority))
-                .status(1)
                 .build();
 
         userRepository.save(user);
 
-        return user;
+        return UserRes.UserDetailDto.toDto(user);
     }
 
-
-
-    public User signupADMIN(UserReq.SignupUserReq signupUserReq) {
-        if (userRepository.findUserWithAuthoritiesByUsername(signupUserReq.getUsername()).orElse(null) != null) {
-            throw new RuntimeException("이미 가입되어 있는 관리자입니다.");
+    //전화번호 양식 체크
+    public boolean validationEmail(String email){
+        Pattern pattern = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$");
+        Matcher matcher = pattern.matcher(email);
+        if (matcher.matches()) {
+            return true;
+        } else {
+            return false;
         }
-
-        Authority roleAdmin = new Authority("ROLE_ADMIN");
-        Authority roleUser = new Authority("ROLE_USER");
-
-
-        List<Authority> authorityList = giveADMIN();
-
-
-        User user = User.builder()
-                .username(signupUserReq.getUsername())
-                .password(passwordEncoder.encode(signupUserReq.getPassword()))
-                .name(signupUserReq.getName())
-                .imageUrl(signupUserReq.getImageUrl())
-                //.authorities(Collections.singletonList(authority))
-                .authorities(authorityList)
-                .status(1)
-                .build();
-
-        userRepository.save(user);
-
-        return user;
-
     }
+
+
+//    public User signupADMIN(UserReq.SignupUserDto signupUserDto) {
+//        if (userRepository.findUserWithAuthoritiesByUsername(signupUserDto.getUsername()).orElse(null) != null) {
+//            throw new RuntimeException("이미 가입되어 있는 관리자입니다.");
+//        }
+//
+//        Authority roleAdmin = new Authority("ROLE_ADMIN");
+//        Authority roleUser = new Authority("ROLE_USER");
+//
+//
+//        List<Authority> authorityList = giveADMIN();
+//
+//
+//        User user = User.builder()
+//                .username(signupUserDto.getUsername())
+//                .password(passwordEncoder.encode(signupUserDto.getPassword()))
+//                .name(signupUserDto.getName())
+//                .imageUrl(signupUserDto.getImageUrl())
+//                //.authorities(Collections.singletonList(authority))
+//                .authorities(authorityList)
+//                .build();
+//
+//        userRepository.save(user);
+//
+//        return user;
+//
+//    }
 
     @Transactional
-    public TokenRes login(UserReq.LoginUserReq loginUserReq){
+    public TokenRes login(UserReq.LoginUserDto loginUserDto){
+        Optional<User> optionalUser = userRepository.findUserByUsername(loginUserDto.getUsername());
+        if(optionalUser.isPresent()) {
+            User user = optionalUser.get();
+            if(passwordEncoder.matches(loginUserDto.getPassword(), user.getPassword())) {
 
-        //이메일 존재 여부 체크
+                //인증토큰 생성
+                UsernamePasswordAuthenticationToken authenticationToken =
+                        new UsernamePasswordAuthenticationToken(loginUserDto.getUsername(), loginUserDto.getPassword());
 
-        //비밀번호 동일 여부 체크
-
-
-        //인증토큰 생성
-        UsernamePasswordAuthenticationToken authenticationToken =
-                new UsernamePasswordAuthenticationToken(loginUserReq.getUsername(), loginUserReq.getPassword());
-
-        Authentication authentication = authenticationManagerBuilder.getObject().authenticate(authenticationToken);
-        SecurityContextHolder.getContext().setAuthentication(authentication); //SecurityContext에 저장
-
-        //String jwt = tokenProvider.createToken(authentication); //인증토큰으로 jwt토큰 생성
-
-        User loginUser = userRepository.findUserByUsername(loginUserReq.getUsername()).get();
-        Long userIdx = loginUser.getId();
-        GenerateToken generateToken = tokenProvider.createAllToken(userIdx);
+                Authentication authentication = authenticationManagerBuilder.getObject().authenticate(authenticationToken);
+                SecurityContextHolder.getContext().setAuthentication(authentication); //SecurityContext에 저장
 
 
-        HttpHeaders httpHeaders = new HttpHeaders();
-        httpHeaders.add(JwtFilter.AUTHORIZATION_HEADER, "Bearer " + generateToken.getAccessToken());
 
-        return new TokenRes(loginUser.getUsername(), generateToken.getAccessToken(), generateToken.getRefreshToken());
+                User loginUser = optionalUser.get();
+                Long userId = loginUser.getUserId();
+                GenerateToken generateToken = tokenProvider.createAllToken(userId);
+
+                boolean isFirstLogin = user.isFirstLogin();
+                user.setFirstLogin(false); //첫 로그인 이후는 전부 0으로 바꾸기
+
+
+//                HttpHeaders httpHeaders = new HttpHeaders();
+//                httpHeaders.add(JwtFilter.AUTHORIZATION_HEADER, "Bearer " + generateToken.getAccessToken());
+//
+
+
+                return TokenRes.builder()
+                        .username(loginUser.getUsername())
+                        .firstLogin(isFirstLogin)
+                        .accessToken(generateToken.getAccessToken())
+                        .refreshToken(generateToken.getRefreshToken())
+                        .build();
+            } else{
+                throw new BadRequestException("비밀번호를 다시 입력해주세요");
+            }
+        } else{
+            throw new BadRequestException("존재하지 않는 회원입니다");
+        }
     }
 
 
 
     public String withdrawal() {
         User user = findNowLoginUser();
-
-        user.setStatus(0);
+        
         userRepository.save(user);
 
         return "회원 탈퇴가 완료되었습니다";

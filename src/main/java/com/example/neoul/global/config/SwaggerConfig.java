@@ -58,8 +58,8 @@ public class SwaggerConfig {
 
 
     private ApiInfo apiInfo() {
-        String title = "SEMTLE";
-        String description = "SEMTLE API Documentation";
+        String title = "NEOUL";
+        String description = "NEOUL API Documentation";
         return new ApiInfoBuilder()
                 .title(title)
                 .description(description)
