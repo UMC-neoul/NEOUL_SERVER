@@ -2,14 +2,12 @@ package com.example.neoul.service;
 
 import com.example.neoul.dto.brand.BrandRes;
 import com.example.neoul.entity.brand.Brand;
-import com.example.neoul.global.entity.ApiResponse;
 import com.example.neoul.repository.BrandRepository;
 import com.example.neoul.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 @Service
@@ -28,7 +26,7 @@ public class BrandService {
         for(Brand brand : brandList){
             BrandRes.BrandListRes brandListRes = BrandRes.BrandListRes.builder()
                     .bid(brand.getBrandId())
-                    .categoryVId(brand.getBrandVCategory().getVcategory_id())
+                    .categoryVId(brand.getBrandVCategory().getVcategoryId())
                     .categoryVName(brand.getBrandVCategory().getName())
                     .bName(brand.getName())
                     .bIntro(brand.getIntro())
@@ -44,7 +42,7 @@ public class BrandService {
         Brand brand = brandRepository.findById(brandId).get(); // 실패시 exception 발생
         BrandRes.BrandInfoRes brandInfo = BrandRes.BrandInfoRes.builder()
                 .bid(brand.getBrandId())
-                .categoryVId(brand.getBrandVCategory().getVcategory_id())
+                .categoryVId(brand.getBrandVCategory().getVcategoryId())
                 .categoryVName(brand.getBrandVCategory().getName())
                 .bName(brand.getName())
                 .bIntro(brand.getIntro())
