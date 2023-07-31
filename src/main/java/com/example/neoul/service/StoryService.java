@@ -1,6 +1,6 @@
-package com.example.neoul.controller.StoryController;
+package com.example.neoul.service;
 
-import com.example.neoul.controller.brandController.BrandService;
+import com.example.neoul.service.BrandService;
 import com.example.neoul.dto.Story.StoryRes;
 import com.example.neoul.entity.brand.Brand;
 import com.example.neoul.entity.brand.Story;

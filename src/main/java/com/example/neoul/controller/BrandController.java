@@ -1,10 +1,9 @@
-package com.example.neoul.controller.brandController;
+package com.example.neoul.controller;
 
-import com.example.neoul.dto.brand.BrandReq;
 import com.example.neoul.dto.brand.BrandRes;
-import com.example.neoul.entity.brand.Brand;
-import com.example.neoul.entity.brand.Product;
 import com.example.neoul.global.entity.ApiResponse;
+import com.example.neoul.service.BrandService;
+import io.swagger.annotations.Api;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,6 +11,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
+@Api(tags={"02.brand"})
 @RequestMapping("/brand")
 public class BrandController {
     private final BrandService brandService;

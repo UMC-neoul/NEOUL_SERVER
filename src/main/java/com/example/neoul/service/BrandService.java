@@ -1,4 +1,4 @@
-package com.example.neoul.controller.brandController;
+package com.example.neoul.service;
 
 import com.example.neoul.dto.brand.BrandRes;
 import com.example.neoul.entity.brand.Brand;
