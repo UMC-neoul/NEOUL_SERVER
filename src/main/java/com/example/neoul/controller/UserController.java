@@ -41,6 +41,13 @@ public class UserController {
         if(signupUserDto.getPassword().length() < 6)
             throw new BadRequestException("비밀번호를 6자리 이상 입력해주세요");
 
+        //생년월일 8자리 체크
+        if(signupUserDto.getBirth().length() < 8)
+            throw new BadRequestException("생년월일을 8자리로 입력해주세요");
+
+        //올바른 이름인지 확인
+
+
 
         return new ApiResponse<>(userService.signup(signupUserDto));
     }
