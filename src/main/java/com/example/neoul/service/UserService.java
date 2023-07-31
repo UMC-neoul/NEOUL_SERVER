@@ -1,20 +1,18 @@
 package com.example.neoul.service;
 
 
-import com.example.neoul.dto.GenerateToken;
-import com.example.neoul.dto.TokenRes;
-import com.example.neoul.dto.UserReq;
-import com.example.neoul.dto.UserRes;
+import com.example.neoul.dto.user.GenerateToken;
+import com.example.neoul.dto.user.TokenRes;
+import com.example.neoul.dto.user.UserReq;
+import com.example.neoul.dto.user.UserRes;
 import com.example.neoul.entity.user.Authority;
 import com.example.neoul.entity.user.User;
 import com.example.neoul.global.exception.BadRequestException;
 import com.example.neoul.global.exception.ServerErrorException;
-import com.example.neoul.global.jwt.JwtFilter;
 import com.example.neoul.global.jwt.TokenProvider;
 import com.example.neoul.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
-import org.springframework.http.HttpHeaders;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.core.Authentication;

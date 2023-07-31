@@ -1,6 +1,6 @@
 package com.example.neoul.global.jwt;
 
-import com.example.neoul.dto.GenerateToken;
+import com.example.neoul.dto.user.GenerateToken;
 import com.example.neoul.entity.user.User;
 import com.example.neoul.repository.UserRepository;
 import com.example.neoul.service.CustomUserDetailsService;

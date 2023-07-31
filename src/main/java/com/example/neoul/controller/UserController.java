@@ -1,9 +1,9 @@
 package com.example.neoul.controller;
 
 
-import com.example.neoul.dto.TokenRes;
-import com.example.neoul.dto.UserReq;
-import com.example.neoul.dto.UserRes;
+import com.example.neoul.dto.user.TokenRes;
+import com.example.neoul.dto.user.UserReq;
+import com.example.neoul.dto.user.UserRes;
 import com.example.neoul.entity.user.User;
 import com.example.neoul.global.entity.ApiResponse;
 import com.example.neoul.global.exception.BadRequestException;

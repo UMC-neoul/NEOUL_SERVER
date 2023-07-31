@@ -1,4 +1,4 @@
-package com.example.neoul.dto;
+package com.example.neoul.dto.user;
 
 import com.example.neoul.entity.user.User;
 import lombok.*;
