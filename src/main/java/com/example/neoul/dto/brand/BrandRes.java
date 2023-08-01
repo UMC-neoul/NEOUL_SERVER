@@ -1,7 +1,12 @@
 package com.example.neoul.dto.brand;
 
+import com.example.neoul.entity.brand.Brand;
 import com.example.neoul.entity.brand.Product;
+import com.example.neoul.entity.category.CategoryP;
+import com.example.neoul.entity.category.CategoryV;
 import lombok.*;
+
+import javax.persistence.*;
 import java.util.List;
 
 public class BrandRes {
@@ -23,8 +28,7 @@ public class BrandRes {
         private String bName; //브랜드 이름
         private String bIntro; //한 줄소개
         private String bProfileImg; //브랜드 프로필 이미지
-
-        private List<Product> products; //TODO -> 이것도 DTO로 반환처리 해야 할 것 같아!
+        private List<ProductListRes> products;
 //        private Long hid; //해시태그 id
 //        private List<String> hashTag; //해시태그 내용
 
@@ -33,10 +37,15 @@ public class BrandRes {
 //        private Boolean bHearted; //브랜드 찜 여부 true false
     }
 
-//    public static class ProductSimple{
-//        private Long productId;
-//        private String name;
-//    }
+    @Getter
+    @Setter
+    public static class ProductListRes {
+        private Long productId;
+        private String name;
+        private Integer price;
+        private String deliveryInfo; //배송정보
+        private String productUrl; //상풍 상세 url
+    }
 
 
     @Builder
@@ -53,7 +62,7 @@ public class BrandRes {
         private String bIntro; //한 줄소개
         private String bProfileImg; //브랜드 프로필 이미지
 
-        private List<Product> products; //TODO -> 이것도 DTO로 반환처리 해야 할 것 같아!
+        private List<ProductListRes> products; //TODO -> 이것도 DTO로 반환처리 해야 할 것 같아!
 
         //        private Long hid; //해시태그 id
         private List<String> hashTag; //해시태그 내용 //TODO -> 이것도 DTO로 반환처리 해야 할 것 같아!
@@ -76,7 +85,26 @@ public class BrandRes {
 
 
     }
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "brand_id")
+    private Long brandId;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "vcategory_id")
+    private CategoryV brandVCategory;
+
+    @Column(name = "name")
+    private String name;
+
+    @Column(name = "intro")
+    private String intro;
+
+    @Column(name = "img")
+    private String profileImg;
+
+    @OneToMany(mappedBy = "brand",fetch = FetchType.LAZY)
+    private List<Product> products; //TODO -> 이것도 DTO로 반환처리 해야 할 것 같아!
     /*
     여기까지 Son ------------------------------------------
      */

@@ -25,7 +25,7 @@ public class BrandController {
     // 브랜드 상세조회
     @GetMapping("/{brandId}")
     public ApiResponse<BrandRes.BrandInfoRes> brandInfo(@PathVariable("brandId") Long brandId){
-        return new ApiResponse<>(brandService.info(brandId));
+        return new ApiResponse<BrandRes.BrandInfoRes>(brandService.info(brandId));
     }
 
 }
