@@ -37,7 +37,7 @@ public class BoardService {
 
         for(Product product : productList){
             BoardRes.CategoryBoardSimple e = BoardRes.CategoryBoardSimple.builder()
-                    .productId(product.getProductId())
+                    .productId(product.getId())
                     .categoryId(categoryId)
                     .brandName(product.getBrand().getName())
                     .productName(product.getName())
