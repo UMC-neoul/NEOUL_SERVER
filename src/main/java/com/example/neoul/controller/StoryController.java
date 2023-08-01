@@ -20,15 +20,17 @@ public class StoryController {
     private final StoryService storyService;
 
     // 스토리 list
-    @GetMapping("/list")
-    public ApiResponse<List<StoryRes.StoryListRes>> list(){
-        return new ApiResponse(storyService.list());
-    }
+//    @GetMapping("/list")
+//    public ApiResponse<List<StoryRes.StoryListRes>> list(){
+//        return new ApiResponse(storyService.list());
+//    }
+//
+//    // 스토리 상세조회
+//    @GetMapping("/{storyId}")
+//    public ApiResponse<StoryRes.StoryInfoRes> storyInfo(@PathVariable("storyId") Long storyId){
+//        return new ApiResponse<>(storyService.info(storyId));
+//    }
 
-    // 스토리 상세조회
-    @GetMapping("/{storyId}")
-    public ApiResponse<StoryRes.StoryInfoRes> storyInfo(@PathVariable("storyId") Long storyId){
-        return new ApiResponse<>(storyService.info(storyId));
-    }
+
 }
 
