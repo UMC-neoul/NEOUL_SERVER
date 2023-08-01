@@ -8,6 +8,7 @@ import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
+import java.util.List;
 
 
 @DynamicInsert
@@ -37,8 +38,9 @@ public class Brand extends BaseEntity {
 
     @Column(name = "img")
     private String profileImg;
-
-
+//
+//    @OneToMany(mappedBy = "brand",fetch = FetchType.LAZY)
+//    private List<Product> products; //TODO -> 이것도 DTO로 반환처리 해야 할 것 같아!
 
 
 

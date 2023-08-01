@@ -4,6 +4,7 @@ package com.example.neoul.repository;
 import com.example.neoul.entity.brand.Brand;
 import com.example.neoul.entity.brand.Product;
 import com.example.neoul.entity.category.CategoryP;
+import com.example.neoul.entity.category.CategoryV;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -15,4 +16,5 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     List<Product> findAllByBrand(Brand brand);
 
     List<Product> findAllByCategoryP(CategoryP categoryP);
+
 }
