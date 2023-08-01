@@ -11,7 +11,7 @@ public class ProductRes {
     @AllArgsConstructor
     @Setter
     @Getter
-    // main - 상품조회
+    // main - 상품 상세조회
     public static class RecruitProductRes {
         private Long pid; //상품 id
         private Long bid; //브랜드 id
