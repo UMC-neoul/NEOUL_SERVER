@@ -2,7 +2,6 @@ package com.example.neoul.service;
 
 import com.example.neoul.dto.brand.BrandRes;
 import com.example.neoul.entity.brand.Brand;
-import com.example.neoul.entity.brand.Product;
 import com.example.neoul.repository.BrandRepository;
 import com.example.neoul.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
@@ -28,7 +27,7 @@ public class BrandService {
         List<BrandRes.BrandListRes> responseList = new ArrayList<>();
         for(Brand brand : brandList){
             BrandRes.BrandListRes brandListRes = BrandRes.BrandListRes.builder()
-                    .id(brand.getId())
+                    .brandId(brand.getId())
                     .categoryVId(brand.getCategoryV().getId())
                     .categoryVName(brand.getCategoryV().getName())
                     .name(brand.getName())
@@ -44,13 +43,13 @@ public class BrandService {
     public BrandRes.BrandInfoRes getBrandInfo(Long brandId){
         Brand brand = brandRepository.findById(brandId).get(); // 실패시 exception 발생
         BrandRes.BrandInfoRes brandInfo = BrandRes.BrandInfoRes.builder()
-                .id(brand.getId())
+                .brandId(brand.getId())
                 .categoryVId(brand.getCategoryV().getId())
                 .categoryVName(brand.getCategoryV().getName())
-                .name(brand.getName())
+                .brandName(brand.getName())
                 .intro(brand.getIntro())
                 .profileImg(brand.getProfileImg())
-                .products(productList(brand))
+                .productList(productList(brand))
 //                .hashTag() // 해시태그 내용
 //                .bCreatedAt()
 //                .bLikeCNT() // 찜개수

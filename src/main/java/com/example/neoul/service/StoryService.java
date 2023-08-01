@@ -30,7 +30,7 @@ public class StoryService {
             Story story = storyRepository.findAllByCategoryV(vCategory).stream().findAny()
                     .orElseThrow(() -> new NotFoundException("스토리가 존재하지 않습니다."));
             StoryRes.StoryListRes StoryListRes = StoryRes.StoryListRes.builder()
-                    .id(story.getId())
+                    .storyId(story.getId())
                     .categoryVName(story.getCategoryV().getName())
                     .preImg(story.getImg())
                     .title(story.getTitle())
@@ -47,13 +47,13 @@ public class StoryService {
         List<Brand> brandList = brandRepository.findAllByCategoryV(story.getCategoryV());
         // 응답 리스트
         StoryRes.StoryInfoRes responseList = StoryRes.StoryInfoRes.builder()
-                .id(storyId)
+                .storyId(storyId)
                 .categoryVName(story.getCategoryV().getName())
                 .preImg(story.getImg())
                 .title(story.getTitle())
                 .content(story.getContent())
                 .createdAt(story.getCreatedAt())
-                .brandListRes(brandService.makeBrandList(brandList))
+                .brandList(brandService.makeBrandList(brandList))
                 .build();
 
         return responseList;
