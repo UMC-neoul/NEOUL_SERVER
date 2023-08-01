@@ -19,7 +19,7 @@ public class BrandService {
     private final BrandRepository brandRepository;
     private final ProductRepository productRepository;
 
-    public List<BrandRes.BrandListRes> list(){
+    public List<BrandRes.BrandListRes> getBrandlist(){
         List<Brand> brandList= brandRepository.findAll();
         return makeBrandList(brandList);
     }
@@ -28,12 +28,12 @@ public class BrandService {
         List<BrandRes.BrandListRes> responseList = new ArrayList<>();
         for(Brand brand : brandList){
             BrandRes.BrandListRes brandListRes = BrandRes.BrandListRes.builder()
-                    .bid(brand.getBrandId())
-                    .categoryVId(brand.getBrandVCategory().getVcategoryId())
-                    .categoryVName(brand.getBrandVCategory().getName())
-                    .bName(brand.getName())
-                    .bIntro(brand.getIntro())
-                    .bProfileImg(brand.getProfileImg())
+                    .id(brand.getId())
+                    .categoryVId(brand.getCategoryV().getId())
+                    .categoryVName(brand.getCategoryV().getName())
+                    .name(brand.getName())
+                    .intro(brand.getIntro())
+                    .profileImg(brand.getProfileImg())
                     .products(productList(brand))
                     .build();
             responseList.add(brandListRes);
@@ -41,15 +41,15 @@ public class BrandService {
         return responseList;
     }
 
-    public BrandRes.BrandInfoRes info(Long brandId){
+    public BrandRes.BrandInfoRes getBrandInfo(Long brandId){
         Brand brand = brandRepository.findById(brandId).get(); // 실패시 exception 발생
         BrandRes.BrandInfoRes brandInfo = BrandRes.BrandInfoRes.builder()
-                .bid(brand.getBrandId())
-                .categoryVId(brand.getBrandVCategory().getVcategoryId())
-                .categoryVName(brand.getBrandVCategory().getName())
-                .bName(brand.getName())
-                .bIntro(brand.getIntro())
-                .bProfileImg(brand.getProfileImg())
+                .id(brand.getId())
+                .categoryVId(brand.getCategoryV().getId())
+                .categoryVName(brand.getCategoryV().getName())
+                .name(brand.getName())
+                .intro(brand.getIntro())
+                .profileImg(brand.getProfileImg())
                 .products(productList(brand))
 //                .hashTag() // 해시태그 내용
 //                .bCreatedAt()

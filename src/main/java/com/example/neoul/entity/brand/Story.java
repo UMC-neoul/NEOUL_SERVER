@@ -23,12 +23,11 @@ public class Story extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "story_id")
-    private Long storyId;
+    private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "vcategory_id")
-    private CategoryV storyVCategory;
+    private CategoryV categoryV;
 
     @Column(name = "img")
     private String img;

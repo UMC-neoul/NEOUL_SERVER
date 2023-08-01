@@ -31,8 +31,7 @@ public class Product extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "product_id")
-    private Long productId;
+    private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "brand_id") //기본 0
@@ -40,7 +39,7 @@ public class Product extends BaseEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "pcategory_id")
-    private CategoryP brandPCategory;
+    private CategoryP categoryP;
 
     private String name;
 
