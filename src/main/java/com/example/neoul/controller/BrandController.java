@@ -16,16 +16,17 @@ import java.util.List;
 public class BrandController {
     private final BrandService brandService;
 
-    // 브랜드 list
-    @GetMapping("/list")
-    public ApiResponse<List<BrandRes.BrandListRes>> list(){
-        return new ApiResponse(brandService.list());
-    }
-
-    // 브랜드 상세조회
-    @GetMapping("/{brandId}")
-    public ApiResponse<BrandRes.BrandInfoRes> brandInfo(@PathVariable("brandId") Long brandId){
-        return new ApiResponse<>(brandService.info(brandId));
-    }
+//
+//    // 브랜드 list
+//    @GetMapping("/list")
+//    public ApiResponse<List<BrandRes.BrandListRes>> list(){
+//        return new ApiResponse(brandService.list());
+//    }
+//
+//    // 브랜드 상세조회
+//    @GetMapping("/{brandId}")
+//    public ApiResponse<BrandRes.BrandInfoRes> brandInfo(@PathVariable("brandId") Long brandId){
+//        return new ApiResponse<>(brandService.info(brandId));
+//    }
 
 }

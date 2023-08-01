@@ -28,6 +28,23 @@ public class BoardRes {
     }
 
 
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
+    @Setter
+    @Getter
+    public static class CategoryBoardSimple {
+        private Long productId;
+        private Long categoryId;
+        private String brandName;
+        private String productName;
+        private Integer price;
+        //private String deliveryInfo;
+        private String productUrl;
+    }
+
+
+
 
 
 

@@ -28,7 +28,7 @@ public class Story extends BaseEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "vcategory_id")
-    private CategoryV storyVCategory;
+    private CategoryV categoryV;
 
     @Column(name = "img")
     private String img;
