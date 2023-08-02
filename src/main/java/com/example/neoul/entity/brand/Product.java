@@ -3,6 +3,7 @@ package com.example.neoul.entity.brand;
 
 import com.example.neoul.entity.category.CategoryP;
 import com.example.neoul.entity.category.CategoryV;
+import com.example.neoul.entity.user.User;
 import com.example.neoul.global.entity.BaseEntity;
 import lombok.*;
 import org.hibernate.annotations.DynamicInsert;
@@ -50,6 +51,11 @@ public class Product extends BaseEntity {
 
     @Column(name = "product_url")
     private String productUrl; //상풍 상세 url
+
+    //추가
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "liked_user_id")
+    private User likedUser;
 
 
 

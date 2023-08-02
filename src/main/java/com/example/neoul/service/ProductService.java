@@ -1,25 +1,35 @@
 package com.example.neoul.service;
 
+import com.example.neoul.dto.brand.BrandRes;
 import com.example.neoul.dto.product.ProductRes;
+import com.example.neoul.entity.brand.Brand;
 import com.example.neoul.entity.brand.Product;
 import com.example.neoul.entity.brand.ProductImage;
+import com.example.neoul.entity.user.User;
+import com.example.neoul.entity.user.UserLikedProduct;
 import com.example.neoul.global.exception.NotFoundException;
 import com.example.neoul.repository.ProductImageRepository;
 import com.example.neoul.repository.ProductRepository;
+import com.example.neoul.repository.UserLikedProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Service
 public class ProductService {
 
     private final ProductRepository productRepository;
-
     private final ProductImageRepository productImageRepository;
+    private final UserLikedProductRepository userLikedProductRepository;
+
+    private final UserService userService;
+
 
 
     // 상품 전체 리스트
@@ -61,6 +71,7 @@ public class ProductService {
                 .build();
     }
 
+
     //상품 상세조회
     public Product getProductByProductId(Long productId){
         Optional<Product> optionalProduct = productRepository.findById(productId);
@@ -71,10 +82,77 @@ public class ProductService {
     }
 
 
+    //상품 찜&찜취소
+    @Transactional
+    public ProductRes.makeLikedProductRes makeLikedProduct(Long productId) {
+        User user = userService.findNowLoginUser();
+        Product product = productRepository.findById(productId)
+                .orElseThrow(() -> new NotFoundException("상품이 존재하지 않습니다."));
 
-    /*public Product getProduct(final Long pid) {
-        return productRepository.findById(pid).orElseThrow(() -> new IllegalArgumentException("no such data"));
-    }*/
+        //UserLikedProduct userLikedProduct = userLikedProductRepository.findByUserAndProduct(user, product);
+        Optional<UserLikedProduct> userLikedProduct = userLikedProductRepository.findByUserAndProduct(user, product);
+
+        if (userLikedProduct != null) {
+            // 찜 했으면 엔티티에서 삭제
+            /*userLikedProductRepository.delete(userLikedProduct);
+            return new ProductRes.makeLikedProductRes(false); // 상품 찜 취소*/
+
+            Product likedProduct = productRepository.findById(productId)
+                    .orElseThrow(() -> new NotFoundException("브랜드가 존재하지 않습니다"));
+            likedProduct.setLikedUser(null);
+            productRepository.save(likedProduct);
+            ProductRes.makeLikedProductRes likedProductRes= ProductRes.makeLikedProductRes.builder()
+                    .productId(productId)
+                    .liked(false)
+                    .build();
+
+            return likedProductRes;
+
+        } else {
+            // 찜 안했으면 엔티티에 생성
+            /*UserLikedProduct newUserLikedProduct = UserLikedProduct.builder()
+                    .user(user)
+                    .product(product)
+                    .build();
+            userLikedProductRepository.save(newUserLikedProduct);
+            return new ProductRes.makeLikedProductRes(true); // 상품 찜 등록*/
+
+            Product likedProduct = productRepository.findById(productId)
+                    .orElseThrow(() -> new NotFoundException("브랜드가 존재하지 않습니다"));
+            likedProduct.setLikedUser(user);
+            productRepository.save(likedProduct);
+            ProductRes.makeLikedProductRes likedProductRes= ProductRes.makeLikedProductRes.builder()
+                    .productId(productId)
+                    .liked(true)
+                    .build();
+
+            return likedProductRes;
+        }
+    }
+
+
+
+    //찜한 상품 목록 조회
+    public ProductRes.getLikedProductRes getLikedProduct(){
+        User user = userService.findNowLoginUser();
+        List<ProductRes.LikedProductList> likedProductList = userLikedProductRepository.findAllByLikedUser(user).stream()
+                .map( origin -> {
+                    ProductRes.LikedProductList likedProduct = ProductRes.LikedProductList.builder()
+                            .likedProductId(origin.getId())
+                            .brandId(origin.getBrand().getId())
+                            .brandName(origin.getBrand().getName())
+                            .productName(origin.getName())
+                            .price(origin.getPrice())
+                            .build();
+                    return likedProduct;
+                })
+                .collect(Collectors.toList());
+
+        return ProductRes.getLikedProductRes.builder()
+                .count(likedProductList.size())
+                .likedProducts(likedProductList)
+                .build();
+    }
 
 
 

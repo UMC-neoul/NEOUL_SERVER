@@ -1,5 +1,6 @@
 package com.example.neoul.controller;
 
+import com.example.neoul.dto.brand.BrandRes;
 import com.example.neoul.dto.product.ProductRes;
 import com.example.neoul.global.entity.ApiResponse;
 import com.example.neoul.service.ProductService;
@@ -35,44 +36,21 @@ public class ProductController { //🛍️
     }
 
 
-
-    /*@GetMapping("/product/{pid}")
-    public ResponseEntity<Product> getProduct(@PathVariable Long pid) {
-
-        return ResponseEntity.ok()
-                .body(productService.getProduct(pid).get());
-    }*/
-
-
-    /*// 브랜드 list
-    @GetMapping("/list")
-    public ApiResponse<List<BrandRes.BrandListRes>> list(){
-        return new ApiResponse(brandService.list());
+    @ApiOperation(value = "상품 찜/찜취소", notes = "상품 찜/찜취소 api 입니다. 해당 상품이 찜 되어 있으면 찜 취소가 되고, 찜이 되어있지 않으면 찜이 됩니다. {productId}에 {1} 처럼 상품 id를 넣고 요청을 보내면 됩니다.")
+    @PatchMapping("/like/{productId}")
+    public ApiResponse<ProductRes.makeLikedProductRes> makeLikedProduct(@PathVariable("productId") Long productId){
+        return new ApiResponse(productService.makeLikedProduct(productId));
     }
 
-    // 브랜드 상세조회
-    @GetMapping("/{brandId}")
-    public ApiResponse<BrandRes.BrandInfoRes> brandInfo(@PathVariable("brandId") Long brandId){
-        return new ApiResponse<>(brandService.info(brandId));
-    }*/
 
-
-
-
-
-
-
-    /*//ReadAll
-    @GetMapping("/product")
-    public List<Product> readAllProduct(){
-        return productRepository.findAll();
+    @ApiOperation(value = "찜한 상품 목록 조회", notes = "찜한 상품의 목록을 조회 합니다.")
+    @GetMapping("/like/list")
+    public ApiResponse<ProductRes.getLikedProductRes> getLikedProduct(){
+        return new ApiResponse<>(productService.getLikedProduct());
     }
 
-    @GetMapping("/product/{pid}")
-    public ApiResponse<List<ProductRes.RecruitProductRes>> getProduct(@PathVariable Long productId,
-                                                                      @RequestParam(required = false) Integer option){
-        return new ApiResponse<>(productService.getProduct(productId, 1));
-    }*/
+
+
 
 
 
