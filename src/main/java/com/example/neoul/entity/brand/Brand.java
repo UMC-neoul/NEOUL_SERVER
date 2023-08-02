@@ -2,6 +2,7 @@ package com.example.neoul.entity.brand;
 
 
 import com.example.neoul.entity.category.CategoryV;
+import com.example.neoul.entity.user.User;
 import com.example.neoul.global.entity.BaseEntity;
 import lombok.*;
 import org.hibernate.annotations.DynamicInsert;
@@ -38,6 +39,11 @@ public class Brand extends BaseEntity {
 
     @Column(name = "img")
     private String profileImg;
+
+    // 추가 - son
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "liked_user_id")
+    private User likedUser;
 //
 //    @OneToMany(mappedBy = "brand",fetch = FetchType.LAZY)
 //    private List<Product> products; //TODO -> 이것도 DTO로 반환처리 해야 할 것 같아!

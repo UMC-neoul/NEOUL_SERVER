@@ -26,9 +26,29 @@ public class BrandController {
 
     // 브랜드 상세조회
     @ApiOperation(value = "브랜드 상세 내용", notes = "브랜드 상세 정보")
-    @GetMapping("/{brandId}")
+    @GetMapping("/info/{brandId}")
     public ApiResponse<BrandRes.BrandInfoRes> getBrandInfo(@PathVariable("brandId") Long brandId){
         return new ApiResponse(brandService.getBrandInfo(brandId));
     }
 
+    // 브랜드 찜하기
+    @ApiOperation(value = "브랜드 찜하기", notes = "브랜드 찜하기")
+    @PatchMapping("/like/{brandId}")
+    public ApiResponse<BrandRes.makeLikedBrandRes> makeLikedBrand(@PathVariable("brandId") Long brandId){
+        return new ApiResponse(brandService.makeLikedBrand(brandId));
+    }
+
+    // 브랜드 찜 취소하기
+    @ApiOperation(value = "브랜드 찜 취소하기", notes = "브랜드 찜 취소하기")
+    @PatchMapping("/dislike/{brandId}")
+    public ApiResponse<BrandRes.deleteLikedBrandRes> deleteLikedBrand(@PathVariable("brandId") Long brandId){
+        return new ApiResponse(brandService.deleteLikedBrand(brandId));
+    }
+
+    // 찜한 브랜드 조회
+    @ApiOperation(value = "찜한 브랜드 조회", notes = "찜한 브랜드 조회")
+    @GetMapping("/like/list")
+    public ApiResponse<BrandRes.getLikedBrandRes> getLikedBrand(){
+        return new ApiResponse(brandService.getLikedBrand());
+    }
 }
