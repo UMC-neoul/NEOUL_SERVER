@@ -2,7 +2,9 @@ package com.example.neoul.service;
 
 import com.example.neoul.dto.product.ProductRes;
 import com.example.neoul.entity.brand.Product;
+import com.example.neoul.entity.brand.ProductImage;
 import com.example.neoul.global.exception.NotFoundException;
+import com.example.neoul.repository.ProductImageRepository;
 import com.example.neoul.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -10,13 +12,14 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Service
 public class ProductService {
 
     private final ProductRepository productRepository;
+
+    private final ProductImageRepository productImageRepository;
 
 
     // 상품 전체 리스트
@@ -34,20 +37,26 @@ public class ProductService {
 
     public ProductRes.ProductDetailRes getProduct(Long productId) {
         Product product = getProductByProductId(productId);
+        List<ProductImage> productImages = productImageRepository.findAllByProduct(product);
+        List<String> productImgList = new ArrayList<>();
+
+        for(ProductImage productImage : productImages){
+            productImgList.add(productImage.getUrl());
+        }
 
         return ProductRes.ProductDetailRes.builder()
-                .pid(product.getId())
-                .bid(product.getBrand().getId())
-                .cid(product.getCategoryP().getId())
-//                .category(product.getCategory()) //얘는 살려야함
-                .pName(product.getName())
+                .productId(product.getId())
+                .brandId(product.getBrand().getId())
+                .categoryPId(product.getCategoryP().getId())
+                .categoryName(product.getCategoryP().getName()) //얘는 살려야함
+                .productName(product.getName())
                 .price(product.getPrice())
-//                .pImgList(product.getImgList()) //얘는 살려야함
-//                .pDeliveryInfo(product.getDeliveryInfo())
-                .pUrl(product.getProductUrl())
+                .productImgList(productImgList) //얘는 살려야함
+                .deliveryInfo(product.getDeliveryInfo())
+                .productUrl(product.getProductUrl())
 //                .pLikeCNT(product.getLikeCount())
-//                .pHearted(product.isHearted()) //얘는 살려야함
-//                .pCreatedAt(product.getCreatedAt())
+//                .pHearted(product.isHearted())
+                .createdAt(product.getCreatedAt().toLocalDate())
 //                .clickedAt(product.getClickedAt())
                 .build();
     }
