@@ -12,7 +12,7 @@ public class ProductRes {
     @Setter
     @Getter
     // main - 상품 상세조회
-    public static class RecruitProductRes {
+    public static class ProductDetailRes {
         private Long pid; //상품 id
         private Long bid; //브랜드 id
         private Long cid; //카테고리 id
