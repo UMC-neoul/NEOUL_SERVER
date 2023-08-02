@@ -27,12 +27,13 @@ public class ProductController { //🛍️
         return new ApiResponse<>(productService.getAllProducts());
     }
 
-    @ApiOperation(value = "상품 상세조회", notes = "상품 상세조회 api 입니다. {productId}에 {1} 처럼 상품 id를 넣고 요청을 보내면 상품을 상세조회할 수 있습니다.")
+    @ApiOperation(value = "상품 상세조회", notes = "ex. {productId}에 {1} 처럼 상품 id를 넣으면 상품 상세조회 가능")
     @GetMapping("/{productId}")
     public ApiResponse<ProductRes.ProductDetailRes> getProductById(@PathVariable Long productId) {
         ProductRes.ProductDetailRes product = productService.getProduct(productId);
         return new ApiResponse<>(product);
     }
+
 
 
 

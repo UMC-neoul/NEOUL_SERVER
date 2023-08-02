@@ -72,10 +72,6 @@ public class ProductService {
 
 
 
-    /*public Product getProduct(final Long pid) {
-        return productRepository.findById(pid).orElseThrow(() -> new IllegalArgumentException("no such data"));
-    }*/
-
 
 
 
