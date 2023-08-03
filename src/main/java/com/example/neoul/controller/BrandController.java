@@ -17,63 +17,36 @@ import java.util.List;
 public class BrandController {
     private final BrandService brandService;
 
-    // 브랜드 list
-    @ApiOperation(value = "브랜드별로 상품 조회하기", notes = "브랜드 별 상품 조회")
-    @GetMapping("/list")
-    public ApiResponse<List<BrandRes.BrandListRes>> getBrandList(){
-        return new ApiResponse(brandService.getBrandList());
-    }
-
-    // 브랜드 상세조회
-    @ApiOperation(value = "브랜드 상세 내용", notes = "브랜드 상세 정보")
-    @GetMapping("/{brandId}")
-    public ApiResponse<BrandRes.BrandInfoRes> getBrandInfo(@PathVariable("brandId") Long brandId){
-        return new ApiResponse(brandService.getBrandInfo(brandId));
-    }
-
-    // 브랜드 찜하기
-    @ApiOperation(value = "브랜드 찜하기", notes = "브랜드 찜하기")
-    @PatchMapping("/like/{brandId}")
-    public ApiResponse<String> likeBrand(@PathVariable("brandId") Long brandId){
-        brandService.likeBrand(brandId);
-        return new ApiResponse("브랜드를 찜했습니다");
-    }
-
-    // 브랜드 찜 취소하기
-    @ApiOperation(value = "브랜드 찜 취소하기", notes = "브랜드 찜 취소하기")
-    @PatchMapping("/dislike/{brandId}")
-    public ApiResponse<String> deleteLikedBrand(@PathVariable("brandId") Long brandId){
-        brandService.deleteLikedBrand(brandId);
-        return new ApiResponse("브랜드 찜이 취소가 되었습니다");
-    }
-
-    // 찜한 브랜드 조회
-    @ApiOperation(value = "찜한 브랜드 조회", notes = "찜한 브랜드 조회")
-    @GetMapping("/like/list")
-    public ApiResponse<BrandRes.getLikedBrandRes> getUserLikedBrand(){
-        return new ApiResponse(brandService.getUserLikedBrand());
-    }
+//    @ApiOperation(value = "브랜드별로 상품 조회하기", notes = "브랜드 별 상품 조회")
+//    @GetMapping("/list")
+//    public ApiResponse<List<BrandRes.BrandListRes>> getBrandList(){
+//        return new ApiResponse(brandService.getBrandList());
+//    }
+//
+//
+//    @ApiOperation(value = "브랜드 상세 내용", notes = "브랜드 상세 정보")
+//    @GetMapping("/{brandId}")
+//    public ApiResponse<BrandRes.BrandInfoRes> getBrandInfo(@PathVariable("brandId") Long brandId){
+//        return new ApiResponse(brandService.getBrandInfo(brandId));
+//    }
 
 
-
-//    // 브랜드 찜하기
 //    @ApiOperation(value = "브랜드 찜하기", notes = "브랜드 찜하기")
 //    @PatchMapping("/like/{brandId}")
-//    public ApiResponse<BrandRes.makeLikedBrandRes> makeLikedBrand(@PathVariable("brandId") Long brandId){
-//        return new ApiResponse(brandService.makeLikedBrand(brandId));
+//    public ApiResponse<String> likeBrand(@PathVariable("brandId") Long brandId){
+//        brandService.likeBrand(brandId);
+//        return new ApiResponse("브랜드를 찜했습니다");
 //    }
 //
 //    // 브랜드 찜 취소하기
 //    @ApiOperation(value = "브랜드 찜 취소하기", notes = "브랜드 찜 취소하기")
 //    @PatchMapping("/dislike/{brandId}")
-//    public ApiResponse<BrandRes.deleteLikedBrandRes> deleteLikedBrand(@PathVariable("brandId") Long brandId){
-//        return new ApiResponse(brandService.deleteLikedBrand(brandId));
+//    public ApiResponse<String> deleteLikedBrand(@PathVariable("brandId") Long brandId){
+//        brandService.deleteLikedBrand(brandId);
+//        return new ApiResponse("브랜드 찜이 취소가 되었습니다");
 //    }
 //
-//    // 찜한 브랜드 조회
-//    @ApiOperation(value = "찜한 브랜드 조회", notes = "찜한 브랜드 조회")
-//    @GetMapping("/like/list")
-//    public ApiResponse<BrandRes.getLikedBrandRes> getLikedBrand(){
-//        return new ApiResponse(brandService.getLikedBrand());
-//    }
+
+
+
 }

@@ -1,12 +1,9 @@
 package com.example.neoul.service;
 
-import com.example.neoul.dto.brand.BrandRes;
 import com.example.neoul.dto.product.ProductRes;
-import com.example.neoul.entity.brand.Brand;
 import com.example.neoul.entity.brand.Product;
 import com.example.neoul.entity.brand.ProductImage;
 import com.example.neoul.entity.user.User;
-import com.example.neoul.entity.user.UserLikedBrand;
 import com.example.neoul.entity.user.UserLikedProduct;
 import com.example.neoul.global.exception.BadRequestException;
 import com.example.neoul.global.exception.NotFoundException;
@@ -85,7 +82,7 @@ public class ProductService {
 
 
 
-    public void likeBrand(Long productId) {
+    public void likeProduct(Long productId) {
         User user = userService.findNowLoginUser();
         Product product = getProductByProductId(productId);
         UserLikedProduct userLikedProduct = UserLikedProduct.builder()
@@ -96,7 +93,7 @@ public class ProductService {
         userLikedProductRepository.save(userLikedProduct);
     }
 
-    public void deleteLikedBrand(Long productId) {
+    public void deleteLikedProduct(Long productId) {
         User user = userService.findNowLoginUser();
         Product product = getProductByProductId(productId);
 
@@ -108,7 +105,7 @@ public class ProductService {
         userLikedProductRepository.delete(userLikedProduct);
     }
 
-    public ProductRes.getLikedProductRes getUserLikedBrand() {
+    public ProductRes.getLikedProductRes getUserLikedProduct() {
         User user = userService.findNowLoginUser();
         List<UserLikedProduct> userLikedProductList = userLikedProductRepository.findAllByUser(user);
         List<ProductRes.LikedProductList> list = new ArrayList<>();
