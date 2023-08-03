@@ -17,5 +17,7 @@ public interface RecentlyClickedRepository extends JpaRepository<RecentlyClicked
 
     boolean existsByUserAndProduct(User user, Product product);
 
+    boolean existsRecentlyClickedByUserAndProduct(User user, Product product);
+
     Optional<RecentlyClicked> findByUserAndProduct(User user, Product product);
 }

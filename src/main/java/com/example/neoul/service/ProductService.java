@@ -165,7 +165,7 @@ public class ProductService {
         User user = userService.findNowLoginUser();
         Product product = getProductByProductId(recentlyClickedReq.getProductId());
 
-        if(!recentlyClickedRepository.existsByUserAndProduct(user, product)){
+        if(!recentlyClickedRepository.existsRecentlyClickedByUserAndProduct(user, product)){
             RecentlyClicked recentlyClicked = RecentlyClicked.builder()
                     .user(user)
                     .product(product)
