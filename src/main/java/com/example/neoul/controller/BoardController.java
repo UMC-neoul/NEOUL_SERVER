@@ -19,7 +19,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @Api(tags={"04.board"})
-@RequestMapping("/board")
+@RequestMapping("")
 public class BoardController {
 
     private final BoardService boardService;
@@ -28,11 +28,23 @@ public class BoardController {
 
 
 
-    @ApiOperation(value = "카테고리별로 상품 조회하기", notes = "의류(1), 소품(2), 악세사리(3), 잡화(4), 기타(5) | 추천순, 인기순, 신상품순, 낮은 가격순, 높은 가격순")
-    @GetMapping("/product/{categoryId}")
-    public ApiResponse<List<BoardRes.CategoryBoardSimple>> getCategoryList(@PathVariable Long categoryId,
-                                                                           @RequestParam(required = false) Integer option){
-        return new ApiResponse<>(boardService.getCategoryList(categoryId, 1));
+    @ApiOperation(value = "카테고리별로 상품 조회하기", notes = "의류(1), 소품(2), 악세사리(3), 잡화(4), 기타(5) | " +
+            "추천순(1 -> 추후 추가 예정), 인기순(2), 신상품순(3), 낮은 가격순(4), 높은 가격순(5)")
+    @GetMapping("/product/category/{categoryId}")
+    public Object getCategoryList(@PathVariable Long categoryId,
+                                  @RequestParam(required = false) int option){
+        if(option == 1) //TODO 추천순은 추후 수정 예정
+            return new ApiResponse<>(boardService.getCategoryProductListOrderByRecommendation(categoryId));
+        else if(option ==2)
+            return new ApiResponse<>(boardService.getCategoryProductListOrderByLikes(categoryId));
+        else if(option == 3)
+            return new ApiResponse<>(boardService.getCategoryProductListByCreatedAtDesc(categoryId));
+        else if(option == 4)
+            return new ApiResponse<>(boardService.getCategoryProductListByPriceAsc(categoryId));
+        else if(option ==5)
+            return new ApiResponse<>(boardService.getCategoryProductListByPriceDesc(categoryId));
+
+        throw new BadRequestException("categoryId 또는 option의 값이 유효하지 않습니다.");
     }
 
 
