@@ -1,5 +1,6 @@
 package com.example.neoul.entity.user;
 
+import com.example.neoul.entity.brand.Product;
 import lombok.*;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
@@ -21,9 +22,11 @@ public class UserLikedProduct {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "user_id")
-    private Long userId;
+    @JoinColumn(name = "user_id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    private User user;
 
-    @Column(name = "product_id")
-    private Long productId;
+    @JoinColumn(name = "product_id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Product product;
 }

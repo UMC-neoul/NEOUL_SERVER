@@ -1,9 +1,9 @@
 package com.example.neoul.controller;
 
 
-import com.example.neoul.dto.TokenRes;
-import com.example.neoul.dto.UserReq;
-import com.example.neoul.dto.UserRes;
+import com.example.neoul.dto.user.TokenRes;
+import com.example.neoul.dto.user.UserReq;
+import com.example.neoul.dto.user.UserRes;
 import com.example.neoul.entity.user.User;
 import com.example.neoul.global.entity.ApiResponse;
 import com.example.neoul.global.exception.BadRequestException;
@@ -41,11 +41,16 @@ public class UserController {
         if(signupUserDto.getPassword().length() < 6)
             throw new BadRequestException("비밀번호를 6자리 이상 입력해주세요");
 
+        //생년월일 8자리 체크
+        if(signupUserDto.getBirth().length() < 8)
+            throw new BadRequestException("생년월일을 8자리로 입력해주세요");
+
+        //올바른 이름인지 확인
+
+
 
         return new ApiResponse<>(userService.signup(signupUserDto));
     }
-
-
 
 
     @ApiOperation(value = "로그인", notes = "로그인")

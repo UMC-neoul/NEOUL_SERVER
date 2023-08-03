@@ -2,12 +2,14 @@ package com.example.neoul.entity.brand;
 
 
 import com.example.neoul.entity.category.CategoryV;
+import com.example.neoul.entity.user.User;
 import com.example.neoul.global.entity.BaseEntity;
 import lombok.*;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
+import java.util.List;
 
 
 @DynamicInsert
@@ -23,11 +25,11 @@ public class Brand extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "brand_id")
-    private Long brandId;
+    private Long id;
 
-//    @Column(name = "vcategory_id")
-//    private Long vcategoryId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "vcategory_id")
+    private CategoryV categoryV;
 
     @Column(name = "name")
     private String name;
@@ -38,23 +40,14 @@ public class Brand extends BaseEntity {
     @Column(name = "img")
     private String profileImg;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "vcategory_id")
-    private CategoryV brandVCategory;
+    // 추가 - son
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "liked_user_id")
+//    private User likedUser;
+//
+//    @OneToMany(mappedBy = "brand",fetch = FetchType.LAZY)
+//    private List<Product> products; //TODO -> 이것도 DTO로 반환처리 해야 할 것 같아!
 
-//    private Integer bLikeCNT; //브랜드 찜개수
-//    private Boolean bHearted; //브랜드 찜 여부 true false
-
-
-
-
-    /*@CreatedDate
-    @Column(name = "created_at", nullable = false, updatable = false) //updatable = false : 수정불가
-    private LocalDateTime createdDate; //브랜드 입점 일시
-
-    @LastModifiedDate
-    @Column(name = "last_modified_at", nullable = false)
-    private LocalDateTime lastModifiedDate;*/
 
 
     //TODO dto로 수정하기 나중에

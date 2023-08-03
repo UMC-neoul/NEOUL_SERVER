@@ -1,9 +1,9 @@
 package com.example.neoul.service;
 
 
-import com.example.neoul.dto.GenerateToken;
-import com.example.neoul.dto.TokenRes;
-import com.example.neoul.dto.UserReq;
+import com.example.neoul.dto.user.GenerateToken;
+import com.example.neoul.dto.user.TokenRes;
+import com.example.neoul.dto.user.UserReq;
 import com.example.neoul.entity.user.User;
 import com.example.neoul.global.jwt.TokenProvider;
 import com.example.neoul.repository.UserRepository;

@@ -1,9 +1,8 @@
 package com.example.neoul.controller;
 
-import com.example.neoul.dto.TokenRes;
-import com.example.neoul.dto.UserReq;
+import com.example.neoul.dto.user.TokenRes;
+import com.example.neoul.dto.user.UserReq;
 import com.example.neoul.global.entity.ApiResponse;
-import com.example.neoul.global.entity.BaseEntity;
 import com.example.neoul.global.exception.BadRequestException;
 import com.example.neoul.service.AuthService;
 import io.swagger.annotations.Api;

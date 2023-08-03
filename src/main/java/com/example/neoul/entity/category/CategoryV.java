@@ -25,8 +25,8 @@ public class CategoryV {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "vcategory_id")
-    private Long vcategory_id;
+    @Column(name = "id")
+    private Long id;
 
     @Column(name = "name")
     private String name;
@@ -34,14 +34,15 @@ public class CategoryV {
 
 
 
-    // story 들에 대한 관계
-    @OneToMany(mappedBy = "storyVCategory")
-    private List<Story> stories = new ArrayList<Story>();
-
-    // brand 들에 대한 관계
-    @OneToMany(mappedBy = "brandVCategory")
-    private List<Brand> brands = new ArrayList<Brand>();
-
+    //이건 그냥 리포지토리에서 ALL로 불러와도 될 듯!
+//    // story 들에 대한 관계
+//    @OneToMany(mappedBy = "categoryV")
+//    private List<Story> stories = new ArrayList<Story>();
+//
+//    // brand 들에 대한 관계
+//    @OneToMany(mappedBy = "categoryV")
+//    private List<Brand> brands = new ArrayList<Brand>();
+//
 
 
 

@@ -1,4 +1,4 @@
-package com.example.neoul.dto;
+package com.example.neoul.dto.user;
 
 
 import lombok.AllArgsConstructor;

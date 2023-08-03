@@ -37,6 +37,8 @@ public class User extends BaseEntity {
 
     private String phone;
 
+    private String birth;
+
     @Column(name = "image_url")
     private String imageUrl;
 

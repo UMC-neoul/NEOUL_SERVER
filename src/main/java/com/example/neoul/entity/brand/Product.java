@@ -1,6 +1,8 @@
 package com.example.neoul.entity.brand;
 
 
+import com.example.neoul.entity.category.CategoryP;
+import com.example.neoul.entity.category.CategoryV;
 import com.example.neoul.global.entity.BaseEntity;
 import lombok.*;
 import org.hibernate.annotations.DynamicInsert;
@@ -29,14 +31,15 @@ public class Product extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "product_id")
-    private Long productId;
+    private Long id;
 
-    @Column(name = "brand_id") //기본 0
-    private Long brandId; //브랜드 id
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "brand_id") //기본 0
+    private Brand brand; //브랜드 id
 
-    @Column(name = "pcategory_id") //pcategory_id
-    private Long pcategoryId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "pcategory_id")
+    private CategoryP categoryP;
 
     private String name;
 

@@ -1,4 +1,4 @@
-package com.example.neoul.dto;
+package com.example.neoul.dto.user;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
@@ -42,6 +42,7 @@ public class UserReq {
         private String password;
         private String name;
         private String phone;
+        private String birth;
         private String imageUrl;
     }
     

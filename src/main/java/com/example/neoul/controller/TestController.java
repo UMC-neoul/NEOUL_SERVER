@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Api(tags={"00.test"})
 @RequestMapping("/test")
 public class TestController {
-    @GetMapping("/testapi")
+    @GetMapping("/test-api")
     public ResponseEntity test(){
         log.error("test api 수신");
         return new ResponseEntity("test ok",HttpStatus.OK);

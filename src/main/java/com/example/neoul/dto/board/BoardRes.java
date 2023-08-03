@@ -1,9 +1,8 @@
 package com.example.neoul.dto.board;
 
-import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
 
-import java.util.List;
+import java.time.LocalDateTime;
 
 public class BoardRes {
 
@@ -25,6 +24,58 @@ public class BoardRes {
         private String aContent; //답글 내용
         //private List<String> aContents; //답글 여러개 하려면
         private String aCreatedAt; //답변 일자
+    }
+
+
+
+    //기본 카테고리 상품 조회 시 반환 DTO
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
+    @Setter
+    @Getter
+    public static class CategoryProduct {
+        private Long productId;
+        private Long categoryId;
+        private String brandName;
+        private String productName;
+        private Integer price;
+        //private String deliveryInfo;
+        //private String productUrl;
+        private LocalDateTime createdAt;
+    }
+
+
+
+
+
+    //좋아요순 정렬만 사용
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
+    @Setter
+    @Getter
+    public static class CategoryProductOrderByLikes implements Comparable<CategoryProductOrderByLikes>{
+        private Long productId;
+        private Long categoryId;
+        private String brandName;
+        private String productName;
+        private Integer price;
+        //private String deliveryInfo;
+        //private String productUrl;
+        private int likes;
+        private LocalDateTime createdAt;
+
+        @Override
+        public int compareTo(CategoryProductOrderByLikes categoryProductOrderByLikes) {
+            if(this.likes > categoryProductOrderByLikes.getLikes()) {
+                return -1;
+            }
+            else if(this.likes < categoryProductOrderByLikes.getLikes()) {
+                return 1;
+            }
+            return 0;
+        }
     }
 
 
