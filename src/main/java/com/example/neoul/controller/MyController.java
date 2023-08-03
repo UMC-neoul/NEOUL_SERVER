@@ -25,7 +25,7 @@ public class MyController {
 
     //브랜드 찜하기
     @ApiOperation(value = "브랜드 찜하기", notes = "브랜드 찜하기")
-    @PatchMapping("/like/{brandId}")
+    @PatchMapping("/brand/like/{brandId}")
     public ApiResponse<String> likeBrand(@PathVariable("brandId") Long brandId){
         brandService.likeBrand(brandId);
         return new ApiResponse("브랜드를 찜했습니다");
@@ -33,7 +33,7 @@ public class MyController {
 
 
     @ApiOperation(value = "브랜드 찜 취소하기", notes = "브랜드 찜 취소하기")
-    @PatchMapping("/dislike/{brandId}")
+    @PatchMapping("/brand/dislike/{brandId}")
     public ApiResponse<String> deleteLikedBrand(@PathVariable("brandId") Long brandId){
         brandService.deleteLikedBrand(brandId);
         return new ApiResponse("브랜드 찜이 취소가 되었습니다");
@@ -49,7 +49,7 @@ public class MyController {
 
 
     @ApiOperation(value = "상품 찜하기", notes = "상품 찜하기")
-    @PatchMapping("/like/{productId}")
+    @PatchMapping("/product/like/{productId}")
     public ApiResponse<String> likeProduct(@PathVariable("productId") Long productId){
         productService.likeProduct(productId);
         return new ApiResponse("브랜드를 찜했습니다");
@@ -57,7 +57,7 @@ public class MyController {
 
 
     @ApiOperation(value = "상품 찜 취소하기", notes = "상품 찜 취소하기")
-    @PatchMapping("/dislike/{productId}")
+    @PatchMapping("/product/dislike/{productId}")
     public ApiResponse<String> deleteLikedProduct(@PathVariable("productId") Long productId){
         productService.deleteLikedProduct(productId);
         return new ApiResponse("브랜드 찜이 취소가 되었습니다");
