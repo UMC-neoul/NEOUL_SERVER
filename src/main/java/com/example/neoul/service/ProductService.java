@@ -1,5 +1,6 @@
 package com.example.neoul.service;
 
+import com.example.neoul.dto.board.BoardReq;
 import com.example.neoul.dto.product.ProductRes;
 import com.example.neoul.entity.brand.Product;
 import com.example.neoul.entity.brand.ProductImage;
@@ -158,5 +159,26 @@ public class ProductService {
         }
 
         return result;
+    }
+
+    public void createUserRecentlyClickedProduct(BoardReq.RecentlyClickedReq recentlyClickedReq) {
+        User user = userService.findNowLoginUser();
+        Product product = getProductByProductId(recentlyClickedReq.getProductId());
+
+        if(!recentlyClickedRepository.existsRecentlyClickedByUserAndProduct(user, product)){
+            RecentlyClicked recentlyClicked = RecentlyClicked.builder()
+                    .user(user)
+                    .product(product)
+                    .clickedAt(recentlyClickedReq.getClickedAt())
+                    .build();
+            recentlyClickedRepository.save(recentlyClicked);
+        } else {
+            RecentlyClicked recentlyClicked = recentlyClickedRepository.findByUserAndProduct(user, product).get();
+            recentlyClicked.setClickedAt(recentlyClickedReq.getClickedAt());
+            recentlyClickedRepository.save(recentlyClicked);
+        }
+
+
+
     }
 }
