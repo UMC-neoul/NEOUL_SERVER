@@ -34,7 +34,6 @@ public class ProductService {
 
 
 
-
     // 상품 전체 리스트
     public List<ProductRes.ProductDetailRes> getAllProducts() {
         List<Product> products = productRepository.findAll();
@@ -86,22 +85,21 @@ public class ProductService {
     }
 
 
-    /*//상품 찜&찜취소
+    /*
+    //상품 찜&찜취소
     @Transactional
     public ProductRes.makeLikedProductRes makeLikedProduct(Long productId) {
         User user = userService.findNowLoginUser();
         Product product = productRepository.findById(productId)
                 .orElseThrow(() -> new NotFoundException("상품이 존재하지 않습니다."));
 
-<<<<<<< HEAD
         //UserLikedProduct userLikedProduct = userLikedProductRepository.findByUserAndProduct(user, product);
         Optional<UserLikedProduct> userLikedProduct = userLikedProductRepository.findByUserAndProduct(user, product);
 
         if (userLikedProduct != null) {
             // 찜 했으면 엔티티에서 삭제
-            *//*userLikedProductRepository.delete(userLikedProduct);
-            return new ProductRes.makeLikedProductRes(false); // 상품 찜 취소*//*
-
+            userLikedProductRepository.delete(userLikedProduct);
+            return new ProductRes.makeLikedProductRes(false); // 상품 찜 취소
             Product likedProduct = productRepository.findById(productId)
                     .orElseThrow(() -> new NotFoundException("브랜드가 존재하지 않습니다"));
             likedProduct.setLikedUser(null);
@@ -115,12 +113,12 @@ public class ProductService {
 
         } else {
             // 찜 안했으면 엔티티에 생성
-            *//*UserLikedProduct newUserLikedProduct = UserLikedProduct.builder()
+            UserLikedProduct newUserLikedProduct = UserLikedProduct.builder()
                     .user(user)
                     .product(product)
                     .build();
             userLikedProductRepository.save(newUserLikedProduct);
-            return new ProductRes.makeLikedProductRes(true); // 상품 찜 등록*//*
+            return new ProductRes.makeLikedProductRes(true); // 상품 찜 등록
 
             Product likedProduct = productRepository.findById(productId)
                     .orElseThrow(() -> new NotFoundException("브랜드가 존재하지 않습니다"));
@@ -134,14 +132,15 @@ public class ProductService {
             return likedProductRes;
         }
     }
+    */
 
 
 
-    //찜한 상품 목록 조회
-    public ProductRes.getLikedProductRes getLikedProduct(){
+    /*//찜한 상품 목록 조회
+    public ProductRes.getLikedProductRes getLikedProduct() {
         User user = userService.findNowLoginUser();
         List<ProductRes.LikedProductList> likedProductList = userLikedProductRepository.findAllByLikedUser(user).stream()
-                .map( origin -> {
+                .map(origin -> {
                     ProductRes.LikedProductList likedProduct = ProductRes.LikedProductList.builder()
                             .likedProductId(origin.getId())
                             .brandId(origin.getBrand().getId())
@@ -156,7 +155,9 @@ public class ProductService {
         return ProductRes.getLikedProductRes.builder()
                 .count(likedProductList.size())
                 .likedProducts(likedProductList)
+<<<<<<< HEAD
 =======*/
+
 
     public void likeProduct(Long productId) {
         User user = userService.findNowLoginUser();
@@ -187,7 +188,7 @@ public class ProductService {
         List<ProductRes.LikedProductList> list = new ArrayList<>();
 
         for(UserLikedProduct userLikedProduct : userLikedProductList){
-            ProductRes.LikedProductList e = ProductRes.LikedProductList.builder()
+            ProductRes.LikedProductList e = ProductRes.LikedProductList.builder() //likedProductId
                     .productId(userLikedProduct.getProduct().getId())
                     .productName(userLikedProduct.getProduct().getName())
                     .build();

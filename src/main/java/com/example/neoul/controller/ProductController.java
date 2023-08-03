@@ -40,6 +40,7 @@ public class ProductController { //🛍️
 
 
 
+
 //    @ApiOperation(value = "상품 찜/찜취소", notes = "상품 찜/찜취소 api 입니다. 해당 상품이 찜 되어 있으면 찜 취소가 되고, 찜이 되어있지 않으면 찜이 됩니다. {productId}에 {1} 처럼 상품 id를 넣고 요청을 보내면 됩니다.")
 //    @PatchMapping("/like/{productId}")
 //    public ApiResponse<ProductRes.makeLikedProductRes> makeLikedProduct(@PathVariable("productId") Long productId){

@@ -44,6 +44,28 @@ public class ProductRes {
         private boolean liked;
     }
 
+    /*
+    @Builder
+    @Setter
+    @Getter
+    public static class getLikedProductRes {
+        private int count; //찜한 상품 개수
+        private List<ProductRes.LikedProductList> likedProducts;
+    }
+
+    @Builder
+    @Setter
+    @Getter
+    // product/상세
+    public static class LikedProductList {
+        private Long likedProductId; //상품 id
+        //private List<String> productImgList; //상품사진
+        private Long brandId; //브랜드 id
+        private String brandName; //브랜드 이름
+        private String productName; //상품 이름
+        private Integer price; //상품 가격
+    }*/
+
 
     @Builder
     @Setter
@@ -61,33 +83,6 @@ public class ProductRes {
         private Long productId; //브랜드 id
         private String productName; //브랜드 이름
     }
-
-
-
-
-
-//    @Builder
-//    @Setter
-//    @Getter
-//    public static class getLikedProductRes {
-//        private int count; //찜한 상품 개수
-//        private List<ProductRes.LikedProductList> likedProducts;
-//    }
-//
-//    @Builder
-//    @Setter
-//    @Getter
-//    // product/상세
-//    public static class LikedProductList {
-//        private Long likedProductId; //상품 id
-//        //private List<String> productImgList; //상품사진
-//        private Long brandId; //브랜드 id
-//        private String brandName; //브랜드 이름
-//        private String productName; //상품 이름
-//        private Integer price; //상품 가격
-//    }
-
-
 
 
 
