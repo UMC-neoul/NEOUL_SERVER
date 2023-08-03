@@ -113,6 +113,22 @@ public class UserService {
         }
     }
 
+    // 회원정보 수정
+    public void userInfoEdit(UserReq.UserInfoEditReq userInfoEditReq){
+        User user = findNowLoginUser();
+
+        if (userInfoEditReq.getName() != null){
+            user.setName(userInfoEditReq.getName());
+        }
+        if (userInfoEditReq.getBirth() != null){
+            user.setBirth(userInfoEditReq.getBirth());
+        }
+        if (userInfoEditReq.getPhone() != null){
+            user.setPhone(userInfoEditReq.getPhone());
+        }
+        userRepository.save(user);
+    }
+
 
 //    public User signupADMIN(UserReq.SignupUserDto signupUserDto) {
 //        if (userRepository.findUserWithAuthoritiesByUsername(signupUserDto.getUsername()).orElse(null) != null) {

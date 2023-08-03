@@ -79,6 +79,15 @@ public class UserReq {
         private String imgUrl; //이미지
     }
 
-
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
+    @Setter
+    @Getter
+    public static class UserInfoEditReq {
+        private String name;
+        private String birth;
+        private String phone;
+    }
 
 }

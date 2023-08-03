@@ -30,6 +30,13 @@ public class UserController {
     }
 
 
+    @ApiOperation(value = "회원 정보 수정", notes = "회원 정보 수정")
+    @PatchMapping("/edit")
+    public ApiResponse<String> signup(@RequestBody UserReq.UserInfoEditReq userInfoEditReq) {
+        userService.userInfoEdit(userInfoEditReq);
+        return new ApiResponse<>("회원 정보 수정이 완료되었습니다");
+    }
+
     @ApiOperation(value = "회원가입", notes = "회원가입")
     @PostMapping("/signup")
     public ApiResponse<UserRes.UserDetailDto> signup(@RequestBody UserReq.SignupUserDto signupUserDto) {
@@ -58,6 +65,8 @@ public class UserController {
     public ApiResponse<TokenRes> signup(@RequestBody UserReq.LoginUserDto loginUserDto) {
         return new ApiResponse<>(userService.login(loginUserDto));
     }
+
+
 
 //
 //    @ApiOperation(value = "회원 탈퇴", notes = "회원 탈퇴")
