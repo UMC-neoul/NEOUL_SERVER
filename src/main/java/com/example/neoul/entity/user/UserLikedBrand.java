@@ -14,7 +14,7 @@ import javax.persistence.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "user_liked_product")
+@Table(name = "user_liked_brand")
 @Entity
 public class UserLikedBrand {
     @Id

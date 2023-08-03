@@ -61,7 +61,7 @@ public class ProductService {
                 .build();
     }
 
-    //상품 상세조회
+
     public Product getProductByProductId(Long productId){
         Optional<Product> optionalProduct = productRepository.findById(productId);
         if(optionalProduct.isEmpty()) {
