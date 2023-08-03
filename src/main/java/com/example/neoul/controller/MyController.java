@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 @Api(tags={"02.my"})
 @RequestMapping("/my")
-public class MyCollectionController {
+public class MyController {
 
     private final BrandService brandService;
     private final ProductService productService;
