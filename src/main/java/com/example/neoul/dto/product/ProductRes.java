@@ -44,6 +44,24 @@ public class ProductRes {
         private boolean liked;
     }
 
+    /*
+    @Builder
+    @Setter
+    @Getter
+    public static class getLikedProductRes {
+        private Long userId;
+        private int productCnt; //브랜드 개수
+        private List<ProductRes.LikedProductList> likedProduct;
+    }
+
+    @Builder
+    @Setter
+    @Getter
+    public static class LikedProductList {
+        private Long productId; //브랜드 id
+        private String productName; //브랜드 이름
+    }
+
 
 
 
@@ -67,9 +85,25 @@ public class ProductRes {
         private String brandName; //브랜드 이름
         private String productName; //상품 이름
         private Integer price; //상품 가격
+    }*/
+
+
+    @Builder
+    @Setter
+    @Getter
+    public static class getLikedProductRes {
+        private Long userId;
+        private int productCnt; //브랜드 개수
+        private List<ProductRes.LikedProductList> likedProduct;
     }
 
-
+    @Builder
+    @Setter
+    @Getter
+    public static class LikedProductList {
+        private Long productId; //브랜드 id
+        private String productName; //브랜드 이름
+    }
 
 
 

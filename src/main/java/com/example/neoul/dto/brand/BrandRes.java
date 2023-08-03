@@ -1,13 +1,7 @@
 package com.example.neoul.dto.brand;
 
-import com.example.neoul.entity.brand.Brand;
-import com.example.neoul.entity.user.User;
 import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import java.util.List;
 
 public class BrandRes {
@@ -106,27 +100,17 @@ public class BrandRes {
     @Setter
     @Getter
     public static class getLikedBrandRes {
-        private int count; //브랜드 개수
-        private List<LikedBrandList> likedBrands; //카테고리 id
+        private Long userId;
+        private int brandCnt; //브랜드 개수
+        private List<LikedBrandList> likedBrands;
     }
 
     @Builder
     @Setter
     @Getter
-    // brand/상세
     public static class LikedBrandList {
-        private Long likedBrandId; //브랜드 id
-        private Long categoryVId; //카테고리 id
-        private String categoryVName; // 후원 카테고리 이름
-        private String name; //브랜드 이름
-        private String intro; //한 줄소개
-        private String profileImg; //브랜드 프로필 이미지
-
-        private List<String> hashtagList; //해시태그 내용 //TODO -> 이것도 DTO로 반환처리 해야 할 것 같아!(해시태그 id와 해시태크 name)
-
-//        private String createdAt; //입점일시
-//        private Integer likeCNT; //브랜드 찜개수
-
+        private Long brandId; //브랜드 id
+        private String brandName; //브랜드 이름
     }
 
 

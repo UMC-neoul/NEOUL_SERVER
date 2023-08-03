@@ -7,6 +7,7 @@ import com.example.neoul.entity.brand.Product;
 import com.example.neoul.entity.brand.ProductImage;
 import com.example.neoul.entity.user.User;
 import com.example.neoul.entity.user.UserLikedProduct;
+import com.example.neoul.global.exception.BadRequestException;
 import com.example.neoul.global.exception.NotFoundException;
 import com.example.neoul.repository.ProductImageRepository;
 import com.example.neoul.repository.ProductRepository;
@@ -82,6 +83,7 @@ public class ProductService {
     }
 
 
+    /*
     //상품 찜&찜취소
     @Transactional
     public ProductRes.makeLikedProductRes makeLikedProduct(Long productId) {
@@ -89,13 +91,14 @@ public class ProductService {
         Product product = productRepository.findById(productId)
                 .orElseThrow(() -> new NotFoundException("상품이 존재하지 않습니다."));
 
+<<<<<<< HEAD
         //UserLikedProduct userLikedProduct = userLikedProductRepository.findByUserAndProduct(user, product);
         Optional<UserLikedProduct> userLikedProduct = userLikedProductRepository.findByUserAndProduct(user, product);
 
         if (userLikedProduct != null) {
             // 찜 했으면 엔티티에서 삭제
-            /*userLikedProductRepository.delete(userLikedProduct);
-            return new ProductRes.makeLikedProductRes(false); // 상품 찜 취소*/
+            userLikedProductRepository.delete(userLikedProduct);
+            return new ProductRes.makeLikedProductRes(false); // 상품 찜 취소
 
             Product likedProduct = productRepository.findById(productId)
                     .orElseThrow(() -> new NotFoundException("브랜드가 존재하지 않습니다"));
@@ -110,12 +113,12 @@ public class ProductService {
 
         } else {
             // 찜 안했으면 엔티티에 생성
-            /*UserLikedProduct newUserLikedProduct = UserLikedProduct.builder()
+            UserLikedProduct newUserLikedProduct = UserLikedProduct.builder()
                     .user(user)
                     .product(product)
                     .build();
             userLikedProductRepository.save(newUserLikedProduct);
-            return new ProductRes.makeLikedProductRes(true); // 상품 찜 등록*/
+            return new ProductRes.makeLikedProductRes(true); // 상품 찜 등록
 
             Product likedProduct = productRepository.findById(productId)
                     .orElseThrow(() -> new NotFoundException("브랜드가 존재하지 않습니다"));
@@ -129,14 +132,15 @@ public class ProductService {
             return likedProductRes;
         }
     }
+    */
 
 
 
-    //찜한 상품 목록 조회
-    public ProductRes.getLikedProductRes getLikedProduct(){
+    /*//찜한 상품 목록 조회
+    public ProductRes.getLikedProductRes getLikedProduct() {
         User user = userService.findNowLoginUser();
         List<ProductRes.LikedProductList> likedProductList = userLikedProductRepository.findAllByLikedUser(user).stream()
-                .map( origin -> {
+                .map(origin -> {
                     ProductRes.LikedProductList likedProduct = ProductRes.LikedProductList.builder()
                             .likedProductId(origin.getId())
                             .brandId(origin.getBrand().getId())
@@ -151,6 +155,50 @@ public class ProductService {
         return ProductRes.getLikedProductRes.builder()
                 .count(likedProductList.size())
                 .likedProducts(likedProductList)
+=======
+    }*/
+
+    public void likeProduct(Long productId) {
+        User user = userService.findNowLoginUser();
+        Product product = getProductByProductId(productId);
+        UserLikedProduct userLikedProduct = UserLikedProduct.builder()
+                .user(user)
+                .product(product)
+                .build();
+
+        userLikedProductRepository.save(userLikedProduct);
+    }
+
+    public void deleteLikedProduct(Long productId) {
+        User user = userService.findNowLoginUser();
+        Product product = getProductByProductId(productId);
+
+        UserLikedProduct userLikedProduct = userLikedProductRepository.findByUserAndProduct(user, product).orElse(null);
+
+        if(userLikedProduct == null)
+            throw new BadRequestException("해당 상품을 찜하지 않았습니다");
+
+        userLikedProductRepository.delete(userLikedProduct);
+    }
+
+    public ProductRes.getLikedProductRes getUserLikedProduct() {
+        User user = userService.findNowLoginUser();
+        List<UserLikedProduct> userLikedProductList = userLikedProductRepository.findAllByUser(user);
+        List<ProductRes.LikedProductList> list = new ArrayList<>();
+
+        for(UserLikedProduct userLikedProduct : userLikedProductList){
+            ProductRes.LikedProductList e = ProductRes.LikedProductList.builder() //likedProductId
+                    .productId(userLikedProduct.getProduct().getId())
+                    .productName(userLikedProduct.getProduct().getName())
+                    .build();
+            list.add(e);
+        }
+
+
+        return ProductRes.getLikedProductRes.builder()
+                .userId(user.getUserId())
+                .productCnt(list.size())
+                .likedProduct(list)
                 .build();
     }
 
