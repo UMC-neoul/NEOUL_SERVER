@@ -113,6 +113,16 @@ public class UserService {
         }
     }
 
+    public User userInfoEdit(UserReq.UserInfoEditReq userInfoEditReq){
+        User user = findNowLoginUser();
+        user.setName(userInfoEditReq.getUsername());
+        user.setBirth(userInfoEditReq.getBirth());
+        user.setPhone(userInfoEditReq.getPhone());
+        userRepository.save(user);
+
+        return findNowLoginUser();
+    }
+
 
 //    public User signupADMIN(UserReq.SignupUserDto signupUserDto) {
 //        if (userRepository.findUserWithAuthoritiesByUsername(signupUserDto.getUsername()).orElse(null) != null) {

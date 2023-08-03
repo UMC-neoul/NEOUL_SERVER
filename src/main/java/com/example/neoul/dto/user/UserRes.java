@@ -17,6 +17,8 @@ public class UserRes {
     }
 
 
+
+
     @Builder
     @NoArgsConstructor
     @AllArgsConstructor
@@ -52,7 +54,6 @@ public class UserRes {
     public static class EmailAuthRes {
         int checkCode;
     }
-
 
 
 }
