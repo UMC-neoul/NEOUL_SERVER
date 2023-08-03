@@ -10,6 +10,8 @@ import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequiredArgsConstructor
 @Api(tags={"02.my"})
@@ -69,7 +71,11 @@ public class MyController {
     }
 
 
-
+    @ApiOperation(value = "내가 최근 조회한 상품 리스트", notes = "내가 최근 조회한 상품 리스트")
+    @GetMapping("/click/product/list")
+    public ApiResponse<List<ProductRes.ProductSimpleRes>> getUserRecentlyClickedProduct(){
+        return new ApiResponse(productService.getUserRecentlyClickedProduct());
+    }
 
 
 }

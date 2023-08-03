@@ -4,6 +4,7 @@ import com.example.neoul.dto.brand.BrandRes;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class ProductRes {
@@ -30,6 +31,20 @@ public class ProductRes {
         private LocalDate createdAt; //상품 업로드 일자
 
  //       private LocalDate clickedAt; //상품 클릭 일시
+    }
+
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
+    @Setter
+    @Getter
+    public static class ProductSimpleRes {
+        private Long productId;
+        private String brandName;
+        private String productName;
+        private Integer price;
+        private List<String> productImgList;
+        private LocalDateTime clickedAt;
     }
 
 

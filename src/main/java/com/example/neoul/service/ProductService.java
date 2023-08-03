@@ -3,12 +3,14 @@ package com.example.neoul.service;
 import com.example.neoul.dto.product.ProductRes;
 import com.example.neoul.entity.brand.Product;
 import com.example.neoul.entity.brand.ProductImage;
+import com.example.neoul.entity.brand.RecentlyClicked;
 import com.example.neoul.entity.user.User;
 import com.example.neoul.entity.user.UserLikedProduct;
 import com.example.neoul.global.exception.BadRequestException;
 import com.example.neoul.global.exception.NotFoundException;
 import com.example.neoul.repository.ProductImageRepository;
 import com.example.neoul.repository.ProductRepository;
+import com.example.neoul.repository.RecentlyClickedRepository;
 import com.example.neoul.repository.UserLikedProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -28,6 +30,8 @@ public class ProductService {
     private final UserLikedProductRepository userLikedProductRepository;
 
     private final UserService userService;
+
+    private final RecentlyClickedRepository recentlyClickedRepository;
 
 
 
@@ -127,7 +131,32 @@ public class ProductService {
     }
 
 
+    public List<ProductRes.ProductSimpleRes> getUserRecentlyClickedProduct() {
+        User user = userService.findNowLoginUser();
+        List<RecentlyClicked> recentlyClickedList = recentlyClickedRepository.findAllByUserOrderByClickedAtDesc(user);
+        List<ProductRes.ProductSimpleRes> result = new ArrayList<>();
+
+        for(RecentlyClicked recentlyClicked : recentlyClickedList){
+            List<ProductImage> images = productImageRepository.findAllByProduct(recentlyClicked.getProduct());
+            List<String> productImgList = new ArrayList<>();
+
+            for(ProductImage productImage : images){
+                productImgList.add(productImage.getUrl());
+            }
 
 
+            ProductRes.ProductSimpleRes e = ProductRes.ProductSimpleRes.builder()
+                    .productId(recentlyClicked.getProduct().getId())
+                    .brandName(recentlyClicked.getProduct().getBrand().getName())
+                    .productName(recentlyClicked.getProduct().getName())
+                    .price(recentlyClicked.getProduct().getPrice())
+                    .clickedAt(recentlyClicked.getClickedAt())
+                    .productImgList(productImgList)
+                    .build();
 
+            result.add(e);
+        }
+
+        return result;
+    }
 }

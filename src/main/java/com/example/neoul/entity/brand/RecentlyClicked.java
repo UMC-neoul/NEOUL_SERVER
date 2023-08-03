@@ -17,9 +17,9 @@ import java.time.LocalDateTime;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "recently_searched")
+@Table(name = "recently_clicked")
 @Entity
-public class RecentlySearched {
+public class RecentlyClicked {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
