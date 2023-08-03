@@ -40,7 +40,7 @@ public class MyController {
     }
 
     @ApiOperation(value = "찜한 브랜드 조회", notes = "찜한 브랜드 조회")
-    @GetMapping("/like/list")
+    @GetMapping("/like/brand/list")
     public ApiResponse<BrandRes.getLikedBrandRes> getUserLikedBrand(){
         return new ApiResponse(brandService.getUserLikedBrand());
     }
