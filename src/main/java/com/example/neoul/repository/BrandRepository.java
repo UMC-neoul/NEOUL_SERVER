@@ -14,6 +14,6 @@ import java.util.List;
 @Repository
 public interface BrandRepository extends JpaRepository<Brand, Long> {
     List<Brand> findAllByCategoryV(CategoryV categoryV);
-    List<Brand> findAllByLikedUser(User user);
+//    List<Brand> findAllByLikedUser(User user);
 }
 

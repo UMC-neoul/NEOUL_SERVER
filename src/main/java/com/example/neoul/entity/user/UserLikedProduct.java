@@ -29,4 +29,6 @@ public class UserLikedProduct {
     @JoinColumn(name = "product_id")
     @ManyToOne(fetch = FetchType.LAZY)
     private Product product;
+
+
 }
