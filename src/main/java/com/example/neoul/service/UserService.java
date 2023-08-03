@@ -22,6 +22,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -113,11 +114,18 @@ public class UserService {
         }
     }
 
+    // 회원정보 수정
     public User userInfoEdit(UserReq.UserInfoEditReq userInfoEditReq){
         User user = findNowLoginUser();
-        user.setName(userInfoEditReq.getUsername());
-        user.setBirth(userInfoEditReq.getBirth());
-        user.setPhone(userInfoEditReq.getPhone());
+        if (userInfoEditReq.getUsername() != null ){
+            user.setName(userInfoEditReq.getUsername());
+        }
+        if (userInfoEditReq.getBirth() != null ){
+            user.setBirth(userInfoEditReq.getBirth());
+        }
+        if (userInfoEditReq.getPhone() != null ){
+            user.setPhone(userInfoEditReq.getPhone());
+        }
         userRepository.save(user);
 
         return findNowLoginUser();
