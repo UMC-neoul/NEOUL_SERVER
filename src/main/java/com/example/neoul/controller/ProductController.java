@@ -1,5 +1,6 @@
 package com.example.neoul.controller;
 
+import com.example.neoul.dto.brand.BrandRes;
 import com.example.neoul.dto.product.ProductRes;
 import com.example.neoul.global.entity.ApiResponse;
 import com.example.neoul.service.ProductService;
@@ -32,6 +33,29 @@ public class ProductController { //🛍️
     public ApiResponse<ProductRes.ProductDetailRes> getProductById(@PathVariable Long productId) {
         ProductRes.ProductDetailRes product = productService.getProduct(productId);
         return new ApiResponse<>(product);
+    }
+
+    // 브랜드 찜하기
+    @ApiOperation(value = "상품 찜하기", notes = "상품 찜하기")
+    @PatchMapping("/like/{productId}")
+    public ApiResponse<String> likeBrand(@PathVariable("productId") Long productId){
+        productService.likeBrand(productId);
+        return new ApiResponse("브랜드를 찜했습니다");
+    }
+
+    // 브랜드 찜 취소하기
+    @ApiOperation(value = "상품 찜 취소하기", notes = "상품 찜 취소하기")
+    @PatchMapping("/dislike/{productId}")
+    public ApiResponse<String> deleteLikedBrand(@PathVariable("productId") Long productId){
+        productService.deleteLikedBrand(productId);
+        return new ApiResponse("브랜드 찜이 취소가 되었습니다");
+    }
+
+    // 찜한 브랜드 조회
+    @ApiOperation(value = "찜한 상품 조회", notes = "찜한 상품 조회")
+    @GetMapping("/like/list")
+    public ApiResponse<BrandRes.getLikedBrandRes> getUserLikedBrand(){
+        return new ApiResponse(productService.getUserLikedBrand());
     }
 
 

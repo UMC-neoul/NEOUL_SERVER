@@ -1,5 +1,6 @@
 package com.example.neoul.dto.product;
 
+import com.example.neoul.dto.brand.BrandRes;
 import lombok.*;
 
 import java.time.LocalDate;
@@ -40,6 +41,24 @@ public class ProductRes {
     private static class LikedProductRes {
         private Boolean hearted; //true or false
         private String result; //좋아요 성공 or 좋아요 취소 성공
+    }
+
+
+    @Builder
+    @Setter
+    @Getter
+    public static class getLikedProductRes {
+        private Long userId;
+        private int productCnt; //브랜드 개수
+        private List<ProductRes.LikedProductList> likedProduct;
+    }
+
+    @Builder
+    @Setter
+    @Getter
+    public static class LikedProductList {
+        private Long productId; //브랜드 id
+        private String productName; //브랜드 이름
     }
 
 
