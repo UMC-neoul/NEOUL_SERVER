@@ -22,6 +22,7 @@ public class AuthController {
     /**
      * 카카오 소셜로그인
      * https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=abf4119e38a436ab64718033228aad2d&redirect_uri=http://localhost:8080/oauth/kakao
+     * https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=abf4119e38a436ab64718033228aad2d&redirect_uri=http://43.200.23.72:8080/oauth/kakao
      * */
     @ApiOperation(value = "인가코드 캐치를 위한 api, 사용x, 백엔드 터미널로 반환중",
             notes = "https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=abf4119e38a436ab64718033228aad2d&redirect_uri=http://localhost:8080/oauth/kakao" +
