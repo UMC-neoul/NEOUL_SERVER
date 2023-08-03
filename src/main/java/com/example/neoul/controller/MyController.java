@@ -39,7 +39,7 @@ public class MyController {
         return new ApiResponse("브랜드 찜이 취소가 되었습니다");
     }
 
-    @ApiOperation(value = "찜한 브랜드 조회", notes = "찜한 브랜드 조회")
+    @ApiOperation(value = "내가 찜한 브랜드 조회", notes = "찜한 브랜드 조회")
     @GetMapping("/like/brand/list")
     public ApiResponse<BrandRes.getLikedBrandRes> getUserLikedBrand(){
         return new ApiResponse(brandService.getUserLikedBrand());
@@ -48,7 +48,6 @@ public class MyController {
 
 
 
-    //상품 찜하기
     @ApiOperation(value = "상품 찜하기", notes = "상품 찜하기")
     @PatchMapping("/like/{productId}")
     public ApiResponse<String> likeProduct(@PathVariable("productId") Long productId){
