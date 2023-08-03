@@ -3,6 +3,8 @@ package com.example.neoul.dto.board;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
 
+import java.time.LocalDateTime;
+
 public class BoardReq {
 
 
@@ -19,5 +21,19 @@ public class BoardReq {
         @ApiModelProperty(example = "kakao")
         private String social;
     }
+
+
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
+    @Setter
+    @Getter
+    public static class RecentlyClickedReq{
+        private Long productId;
+        private LocalDateTime clickedAt;
+    }
+
+
+
 
 }

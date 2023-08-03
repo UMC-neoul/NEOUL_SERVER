@@ -1,5 +1,6 @@
 package com.example.neoul.controller;
 
+import com.example.neoul.dto.board.BoardReq;
 import com.example.neoul.dto.brand.BrandRes;
 import com.example.neoul.dto.product.ProductRes;
 import com.example.neoul.global.entity.ApiResponse;
@@ -75,6 +76,14 @@ public class MyController {
     @GetMapping("/click/product/list")
     public ApiResponse<List<ProductRes.ProductSimpleRes>> getUserRecentlyClickedProduct(){
         return new ApiResponse(productService.getUserRecentlyClickedProduct());
+    }
+
+
+    @ApiOperation(value = "내가 최근 조회한 상품 디비에 저장", notes = "내가 최근 조회한 상품 디비에 저장")
+    @PostMapping("/click/product")
+    public ApiResponse<String> createUserRecentlyClickedProduct(@RequestBody BoardReq.RecentlyClickedReq recentlyClickedReq){
+        productService.createUserRecentlyClickedProduct(recentlyClickedReq);
+        return new ApiResponse("최근 조회 상품이 등록되었습니다");
     }
 
 

@@ -14,4 +14,8 @@ import java.util.Optional;
 public interface RecentlyClickedRepository extends JpaRepository<RecentlyClicked, Long> {
 
     List<RecentlyClicked> findAllByUserOrderByClickedAtDesc(User user);
+
+    boolean existsByUserAndProduct(User user, Product product);
+
+    Optional<RecentlyClicked> findByUserAndProduct(User user, Product product);
 }
