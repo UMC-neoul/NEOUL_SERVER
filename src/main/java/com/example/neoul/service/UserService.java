@@ -94,6 +94,7 @@ public class UserService {
                 .name(signupUserDto.getName())
                 .phone(signupUserDto.getPhone())
                 .imageUrl(signupUserDto.getImageUrl())
+                .birth(signupUserDto.getBirth())
                 .authorities(Collections.singletonList(authority))
                 .build();
 
