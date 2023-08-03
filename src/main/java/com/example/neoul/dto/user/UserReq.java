@@ -85,7 +85,7 @@ public class UserReq {
     @Setter
     @Getter
     public static class UserInfoEditReq {
-        private String username;
+        private String name;
         private String birth;
         private String phone;
     }

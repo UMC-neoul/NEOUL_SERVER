@@ -31,9 +31,10 @@ public class UserController {
 
 
     @ApiOperation(value = "회원 정보 수정", notes = "회원 정보 수정")
-    @PatchMapping("/now/edit")
-    public ApiResponse<User> signup(@RequestBody UserReq.UserInfoEditReq userInfoEditReq) {
-        return new ApiResponse<>(userService.userInfoEdit(userInfoEditReq));
+    @PatchMapping("/edit")
+    public ApiResponse<String> signup(@RequestBody UserReq.UserInfoEditReq userInfoEditReq) {
+        userService.userInfoEdit(userInfoEditReq);
+        return new ApiResponse<>("회원 정보 수정이 완료되었습니다");
     }
 
     @ApiOperation(value = "회원가입", notes = "회원가입")
