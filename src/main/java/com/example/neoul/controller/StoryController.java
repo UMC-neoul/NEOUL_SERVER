@@ -29,7 +29,7 @@ public class StoryController {
 
 
     @ApiOperation(value = "스토리 별 상세 조회", notes = "싱글말(1), 독립운동가(2), 해양(3), 반려동물(4), 위안부(5)")
-    @GetMapping("/{storyId}")
+    @GetMapping("/{storyId}") //TODO
     public ApiResponse<StoryRes.StoryInfoRes> getStoryInfo(@PathVariable("storyId") Long storyId){
         return new ApiResponse<>(storyService.getStoryInfo(storyId));
     }

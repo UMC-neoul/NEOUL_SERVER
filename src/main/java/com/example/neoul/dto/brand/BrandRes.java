@@ -23,7 +23,7 @@ public class BrandRes {
         private String name; //브랜드 이름
         private String intro; //한 줄소개
         private String profileImg; //브랜드 프로필 이미지
-        private List<ProductListRes> products;
+        private List<ProductListRes> productList;
 
 //        private Long hid; //해시태그 id
 //        private List<String> hashTag; //해시태그 내용
@@ -33,14 +33,18 @@ public class BrandRes {
 //        private Boolean bHearted; //브랜드 찜 여부 true false
     }
 
-    @Getter
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
     @Setter
+    @Getter
     public static class ProductListRes {
         private Long productId;
         private String name;
         private Integer price;
         private String deliveryInfo; //배송정보
         private String productUrl; //상풍 상세 url
+        private List<String> productImgList;
     }
 
 

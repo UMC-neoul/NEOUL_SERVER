@@ -50,13 +50,13 @@ public class BoardController {
 
     //브랜드 리스트, 상세조회
     @ApiOperation(value = "브랜드 조회(+소속 상품)", notes = "브랜드 별 상품 조회")
-    @GetMapping("/brand/list")
+    @GetMapping("/brand/list") //TODO
     public ApiResponse<List<BrandRes.BrandListRes>> getBrandList(){
         return new ApiResponse(brandService.getBrandList());
     }
 
     @ApiOperation(value = "브랜드 상세 조회", notes = "브랜드 상세 정보")
-    @GetMapping("/brand/{brandId}")
+    @GetMapping("/brand/{brandId}")  //TODO
     public ApiResponse<BrandRes.BrandInfoRes> getBrandInfo(@PathVariable("brandId") Long brandId){
         return new ApiResponse(brandService.getBrandInfo(brandId));
     }

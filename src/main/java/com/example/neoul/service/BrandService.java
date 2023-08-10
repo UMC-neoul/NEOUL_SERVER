@@ -2,11 +2,14 @@ package com.example.neoul.service;
 
 import com.example.neoul.dto.brand.BrandRes;
 import com.example.neoul.entity.brand.Brand;
+import com.example.neoul.entity.brand.Product;
+import com.example.neoul.entity.brand.ProductImage;
 import com.example.neoul.entity.user.User;
 import com.example.neoul.entity.user.UserLikedBrand;
 import com.example.neoul.global.exception.BadRequestException;
 import com.example.neoul.global.exception.NotFoundException;
 import com.example.neoul.repository.BrandRepository;
+import com.example.neoul.repository.ProductImageRepository;
 import com.example.neoul.repository.ProductRepository;
 import com.example.neoul.repository.UserLikedBrandRepository;
 import lombok.RequiredArgsConstructor;
@@ -25,6 +28,8 @@ import java.util.stream.Collectors;
 public class BrandService {
     private final BrandRepository brandRepository;
     private final ProductRepository productRepository;
+
+    private final ProductImageRepository productImageRepository;
     private final UserService userService;
 
     private final UserLikedBrandRepository userLikedBrandRepository;
@@ -54,7 +59,7 @@ public class BrandService {
                     .name(brand.getName())
                     .intro(brand.getIntro())
                     .profileImg(brand.getProfileImg())
-                    .products(productList(brand))
+                    .productList(productList(brand))
                     .build();
             responseList.add(brandListRes);
         }
@@ -62,15 +67,33 @@ public class BrandService {
     }
 
     public List<BrandRes.ProductListRes> productList(Brand brand) {
-        return productRepository.findAllByBrand(brand).stream()
-                .map(source -> {
-                    BrandRes.ProductListRes target = new BrandRes.ProductListRes(); // 새로운 Product 객체 생성 (속성 복사를 위한 대상 객체)
-                    BeanUtils.copyProperties(source, target); // 속성 복사
-                    target.setProductId(source.getId());
-                    return target;
-                })
-                .collect(Collectors.toList());
+        List<BrandRes.ProductListRes> result = new ArrayList<>();
+        List<Product> products = productRepository.findAllByBrand(brand); //한 브랜드에 대한 상품 리스트
+
+        for(Product product : products){
+            List<ProductImage> images = productImageRepository.findAllByProduct(product);
+            List<String> productImgList = new ArrayList<>();
+
+            for(ProductImage productImage : images){
+                productImgList.add(productImage.getUrl());
+            }
+
+            BrandRes.ProductListRes e = BrandRes.ProductListRes.builder()
+                    .productId(product.getId())
+                    .name(product.getName())
+                    .price(product.getPrice())
+                    .deliveryInfo(product.getDeliveryInfo())
+                    .productUrl(product.getProductUrl())
+                    .productImgList(productImgList)
+                    .build();
+
+            result.add(e);
+        }
+
+        return result; //한 브랜드에 대한 상품 리스트
     }
+
+
 
     public BrandRes.BrandInfoRes getBrandInfo(Long brandId) {
         Brand brand = brandRepository.findById(brandId).get(); // 실패시 exception 발생
