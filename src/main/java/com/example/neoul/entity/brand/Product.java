@@ -45,6 +45,10 @@ public class Product extends BaseEntity {
 
     private Integer price;
 
+    private Integer discountedRatio;
+
+    private Integer discountedSalePrice;
+
     @Column(name = "delivery_info")
     private String deliveryInfo; //배송정보
 

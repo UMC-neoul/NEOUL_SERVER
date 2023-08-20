@@ -56,7 +56,6 @@ public class SwaggerConfig {
         return new ApiKey("Authorization", "Bearer", "header");
     }
 
-
     private ApiInfo apiInfo() {
         String title = "NEOUL";
         String description = "NEOUL API Documentation";
