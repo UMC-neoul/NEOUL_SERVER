@@ -145,6 +145,8 @@ public class BrandService {
             BrandRes.LikedBrandList e = BrandRes.LikedBrandList.builder()
                     .brandId(userLikedBrand.getBrand().getId())
                     .brandName(userLikedBrand.getBrand().getName())
+                    .brandIntro(userLikedBrand.getBrand().getIntro())
+                    .brandImg(userLikedBrand.getBrand().getProfileImg())
                     .build();
             list.add(e);
         }
