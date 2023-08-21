@@ -16,13 +16,15 @@ public class ProductRes {
     @Setter
     @Getter
     // main - 상품 상세조회
-    public static class ProductDetailRes {
+    public static class ProductDetailRes { //todo 상품 할인률, 할인가 추가
         private Long productId; //상품 id
         private Long brandId; //브랜드 id
         private Long categoryPId; //카테고리 id
         private String categoryName; //상품 카테고리
         private String productName; //상품명
         private Integer price; //상품금액
+        private Integer discountedRatio; //상품 할인률
+        private Integer discountedSalePrice; //상품 할인가
         private List<String> productImgList; //상품사진
         private String deliveryInfo; //상품 배송정보 (무료배송 etc..)
         private String productUrl; //상품상세 url
@@ -71,9 +73,15 @@ public class ProductRes {
     @Builder
     @Setter
     @Getter
-    public static class LikedProductList {
-        private Long productId; //브랜드 id
-        private String productName; //브랜드 이름
+    public static class LikedProductList { //상품 이미지,브랜드 이름, 가격, 할인률 추가
+        private Long productId; //상품 id
+        private String productName; //상품명
+        private List<String> productImgList; //상품사진
+        private Long brandId; //브랜드 id
+        private String brandName; //브랜드 이름
+        private Integer price; //상품금액
+        private Integer discountedRatio; //상품 할인률
+        private Integer discountedSalePrice; //상품 할인가
     }
 
 
