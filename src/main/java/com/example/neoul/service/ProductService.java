@@ -65,6 +65,8 @@ public class ProductService {
                 .categoryName(product.getCategoryP().getName()) //얘는 살려야함
                 .productName(product.getName())
                 .price(product.getPrice())
+                .discountedRatio(product.getDiscountedRatio())
+                .discountedSalePrice(product.getDiscountedSalePrice())
                 .productImgList(productImgList) //얘는 살려야함
                 .deliveryInfo(product.getDeliveryInfo())
                 .productUrl(product.getProductUrl())

@@ -64,13 +64,6 @@ public class DataService {
             Integer discountedSalePrice = (Integer) productData.get("pdiscountedSalePrice");
             String deliveryInfo = "배송비 : " + productData.get("pbaseFee").toString();
 
-            // ProductImage 클래스 만들기.
-            ProductImage productImage = new ProductImage().builder()
-                            .product(productRepository.findByName(name))
-                            .url(img).build();
-
-            productImageRepository.save(productImage);
-
             Product product = Product.builder()
                     .name(name)
                     .brand(brandRepository.findByName((String) productData.get("bname")))
@@ -83,6 +76,15 @@ public class DataService {
                     .build();
 
             productRepository.save(product);
+
+            // ProductImage 클래스 만들기.
+            ProductImage productImage = new ProductImage().builder()
+                    .product(productRepository.findByName(name))
+                    .url(img).build();
+
+            productImageRepository.save(productImage);
+
+
         }
     }
 
