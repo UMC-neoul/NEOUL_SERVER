@@ -115,6 +115,8 @@ public class BrandRes {
     public static class LikedBrandList {
         private Long brandId; //브랜드 id
         private String brandName; //브랜드 이름
+        private String brandIntro; //브랜드 한줄소개
+        private String brandImg; //브랜드 이미지
     }
 
 
