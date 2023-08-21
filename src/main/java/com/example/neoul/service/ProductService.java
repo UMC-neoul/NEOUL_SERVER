@@ -129,7 +129,7 @@ public class ProductService {
                     .productId(userLikedProduct.getProduct().getId())
                     .productName(userLikedProduct.getProduct().getName())
                     .productImgList(productImgList)
-                    .brandId(userLikedProduct.getProduct().getId())
+                    .brandId(userLikedProduct.getProduct().getBrand().getId())
                     .brandName(userLikedProduct.getProduct().getBrand().getName())
                     .price(userLikedProduct.getProduct().getPrice())
                     .discountedRatio(userLikedProduct.getProduct().getDiscountedRatio())
