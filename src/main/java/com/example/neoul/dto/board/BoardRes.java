@@ -3,6 +3,7 @@ package com.example.neoul.dto.board;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class BoardRes {
 
@@ -34,12 +35,14 @@ public class BoardRes {
     @AllArgsConstructor
     @Setter
     @Getter
-    public static class CategoryProduct {
+    public static class CategoryProduct { //todo 상품 찜 여부 추가
         private Long productId;
         private Long categoryId;
         private String brandName;
         private String productName;
         private Integer price;
+        private Integer discountedRatio; //상품 할인률
+        private List<String> productImgList; //상품사진
         //private String deliveryInfo;
         //private String productUrl;
         private LocalDateTime createdAt;
@@ -61,6 +64,8 @@ public class BoardRes {
         private String brandName;
         private String productName;
         private Integer price;
+        private Integer discountedRatio; //상품 할인률
+        private List<String> productImgList; //상품사진
         //private String deliveryInfo;
         //private String productUrl;
         private int likes;
