@@ -52,7 +52,7 @@ public class MyController {
     @PatchMapping("/product/like/{productId}")
     public ApiResponse<String> likeProduct(@PathVariable("productId") Long productId){
         productService.likeProduct(productId);
-        return new ApiResponse("브랜드를 찜했습니다");
+        return new ApiResponse("상품을 찜했습니다");
     }
 
 
@@ -60,7 +60,7 @@ public class MyController {
     @PatchMapping("/product/dislike/{productId}")
     public ApiResponse<String> deleteLikedProduct(@PathVariable("productId") Long productId){
         productService.deleteLikedProduct(productId);
-        return new ApiResponse("브랜드 찜이 취소가 되었습니다");
+        return new ApiResponse("상품 찜이 취소가 되었습니다");
     }
 
 
