@@ -118,9 +118,22 @@ public class ProductService {
         List<ProductRes.LikedProductList> list = new ArrayList<>();
 
         for(UserLikedProduct userLikedProduct : userLikedProductList){
+            List<ProductImage> images = productImageRepository.findAllByProduct(userLikedProduct.getProduct());
+            List<String> productImgList = new ArrayList<>();
+
+            for(ProductImage productImage : images){
+                productImgList.add(productImage.getUrl());
+            }
+
             ProductRes.LikedProductList e = ProductRes.LikedProductList.builder()
                     .productId(userLikedProduct.getProduct().getId())
                     .productName(userLikedProduct.getProduct().getName())
+                    .productImgList(productImgList)
+                    .brandId(userLikedProduct.getProduct().getId())
+                    .brandName(userLikedProduct.getProduct().getBrand().getName())
+                    .price(userLikedProduct.getProduct().getPrice())
+                    .discountedRatio(userLikedProduct.getProduct().getDiscountedRatio())
+                    .discountedSalePrice(userLikedProduct.getProduct().getDiscountedSalePrice())
                     .build();
             list.add(e);
         }
