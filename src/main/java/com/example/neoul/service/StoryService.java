@@ -24,11 +24,9 @@ public class StoryService {
     private final BrandService brandService;
 
     public List<StoryRes.StoryListRes> getStoryList() {
-        List<CategoryV> vCategoryList = categoryVRepository.findAll();
         List<StoryRes.StoryListRes> responseList = new ArrayList<>();
-        for (CategoryV vCategory : vCategoryList) {
-            Story story = storyRepository.findAllByCategoryV(vCategory).stream().findAny()
-                    .orElseThrow(() -> new NotFoundException("스토리가 존재하지 않습니다."));
+        List<Story> storyList = storyRepository.findAll();
+        for (Story story : storyList) {
             StoryRes.StoryListRes StoryListRes = StoryRes.StoryListRes.builder()
                     .storyId(story.getId())
                     .categoryVName(story.getCategoryV().getName())
@@ -39,6 +37,22 @@ public class StoryService {
             responseList.add(StoryListRes);
         }
         return responseList;
+
+//        List<CategoryV> vCategoryList = categoryVRepository.findAll();
+//        List<StoryRes.StoryListRes> responseList = new ArrayList<>();
+//        for (CategoryV vCategory : vCategoryList) {
+//            Story story = storyRepository.findAllByCategoryV(vCategory).stream().findAny()
+//                    .orElseThrow(() -> new NotFoundException("스토리가 존재하지 않습니다."));
+//            StoryRes.StoryListRes StoryListRes = StoryRes.StoryListRes.builder()
+//                    .storyId(story.getId())
+//                    .categoryVName(story.getCategoryV().getName())
+//                    .preImg(story.getImg())
+//                    .title(story.getTitle())
+//                    .createdAt(story.getCreatedAt())
+//                    .build();
+//            responseList.add(StoryListRes);
+//        }
+//        return responseList;
     }
 
     public StoryRes.StoryInfoRes getStoryInfo(Long storyId) {
