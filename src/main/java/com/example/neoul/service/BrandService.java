@@ -2,16 +2,14 @@ package com.example.neoul.service;
 
 import com.example.neoul.dto.brand.BrandRes;
 import com.example.neoul.entity.brand.Brand;
+import com.example.neoul.entity.brand.BrandCategoryV;
 import com.example.neoul.entity.brand.Product;
 import com.example.neoul.entity.brand.ProductImage;
 import com.example.neoul.entity.user.User;
 import com.example.neoul.entity.user.UserLikedBrand;
 import com.example.neoul.global.exception.BadRequestException;
 import com.example.neoul.global.exception.NotFoundException;
-import com.example.neoul.repository.BrandRepository;
-import com.example.neoul.repository.ProductImageRepository;
-import com.example.neoul.repository.ProductRepository;
-import com.example.neoul.repository.UserLikedBrandRepository;
+import com.example.neoul.repository.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -34,6 +32,8 @@ public class BrandService {
 
     private final UserLikedBrandRepository userLikedBrandRepository;
 
+    private final BrandCategoryVRepository brandCategoryVRepository;
+
 
     public Brand getBrandByBrandId(Long brandId){
         Optional<Brand> optionalBrand = brandRepository.findById(brandId);
@@ -52,10 +52,16 @@ public class BrandService {
     public List<BrandRes.BrandListRes> makeBrandList(List<Brand> brandList) {
         List<BrandRes.BrandListRes> responseList = new ArrayList<>();
         for (Brand brand : brandList) {
+            List<BrandCategoryV> brandCategoryVList = brandCategoryVRepository.findAllByBrand(brand);
+
             BrandRes.BrandListRes brandListRes = BrandRes.BrandListRes.builder()
                     .brandId(brand.getId())
-                    .categoryVId(brand.getCategoryV().getId())
-                    .categoryVName(brand.getCategoryV().getName())
+                    .categoryVId(brandCategoryVList.stream()
+                            .map(item -> item.getCategoryV().getId())
+                            .collect(Collectors.toList()))
+                    .categoryVName(brandCategoryVList.stream()
+                            .map(item -> item.getCategoryV().getName())
+                            .collect(Collectors.toList()))
                     .name(brand.getName())
                     .intro(brand.getIntro())
                     .profileImg(brand.getProfileImg())
@@ -97,10 +103,15 @@ public class BrandService {
 
     public BrandRes.BrandInfoRes getBrandInfo(Long brandId) {
         Brand brand = brandRepository.findById(brandId).get(); // 실패시 exception 발생
+
         BrandRes.BrandInfoRes brandInfo = BrandRes.BrandInfoRes.builder()
                 .brandId(brand.getId())
-                .categoryVId(brand.getCategoryV().getId())
-                .categoryVName(brand.getCategoryV().getName())
+                .categoryVId(brandCategoryVRepository.findAllByBrand(brand).stream()
+                        .map(item -> item.getCategoryV().getId())
+                        .collect(Collectors.toList()))
+                .categoryVName(brandCategoryVRepository.findAllByBrand(brand).stream()
+                        .map(item -> item.getCategoryV().getName())
+                        .collect(Collectors.toList()))
                 .brandName(brand.getName())
                 .intro(brand.getIntro())
                 .profileImg(brand.getProfileImg())

@@ -29,7 +29,8 @@ public class BoardController {
 
 
     @ApiOperation(value = "카테고리별로 상품 조회하기", notes = "의류(1), 소품(2), 악세사리(3), 잡화(4), 기타(5) | " +
-            "추천순(1 -> 추후 추가 예정), 인기순(2), 신상품순(3), 낮은 가격순(4), 높은 가격순(5)")
+            "추천순(1 -> 추후 수정 예정), 인기순(2), 신상품순(3), 낮은 가격순(4), 높은 가격순(5)" +
+            "테스트 시 7, 1 넣어서 해보시면 확인 가능합니다")
     @GetMapping("/product/category/{categoryId}")
     public Object getCategoryList(@PathVariable Long categoryId,
                                   @RequestParam(required = false) int option){
