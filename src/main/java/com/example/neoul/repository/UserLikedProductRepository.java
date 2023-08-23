@@ -18,6 +18,6 @@ public interface UserLikedProductRepository extends JpaRepository<UserLikedProdu
     List<UserLikedProduct> findAllByUser(User user);
 
     Optional<UserLikedProduct> findByUserAndProduct(User user, Product product);
-
+    boolean existsByUserAndProduct(User user, Product product);
     int countAllByProduct(Product product);
 }

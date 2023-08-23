@@ -43,6 +43,7 @@ public class BoardRes {
         private Integer price;
         private Integer discountedRatio; //상품 할인률
         private List<String> productImgList; //상품사진
+        private boolean liked;
         //private String deliveryInfo;
         //private String productUrl;
         private LocalDateTime createdAt;
@@ -69,6 +70,7 @@ public class BoardRes {
         //private String deliveryInfo;
         //private String productUrl;
         private int likes;
+        private boolean liked;
         private LocalDateTime createdAt;
 
         @Override
