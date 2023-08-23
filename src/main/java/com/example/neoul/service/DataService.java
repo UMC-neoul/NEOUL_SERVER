@@ -6,6 +6,7 @@ import com.example.neoul.entity.brand.Product;
 import com.example.neoul.entity.brand.ProductImage;
 import com.example.neoul.entity.brand.Story;
 import com.example.neoul.entity.category.CategoryP;
+import com.example.neoul.global.exception.NotFoundException;
 import com.example.neoul.repository.BrandRepository;
 import com.example.neoul.repository.CategoryPRepository;
 import com.example.neoul.repository.ProductImageRepository;
@@ -49,6 +50,12 @@ public class DataService {
         for (Map<String, Object> productData : productDataList) {
 
             String name = (String) productData.get("pname");
+
+            if (productRepository.findByName(name).isPresent()){
+                // product 가 이미 존재하는 경우 pass
+                continue;
+            }
+
             String categoryPName = (String) productData.get("pcategory2");
 
             // categoryP 가 없는 경우에는 만들고, 있는 경우에는 그것을 지정하는 람다식
@@ -79,7 +86,7 @@ public class DataService {
 
             // ProductImage 클래스 만들기.
             ProductImage productImage = new ProductImage().builder()
-                    .product(productRepository.findByName(name))
+                    .product(productRepository.findByName(name).orElseThrow(() -> new NotFoundException("product 가 존재하지 않습니다.")))
                     .url(img).build();
 
             productImageRepository.save(productImage);
