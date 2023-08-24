@@ -87,7 +87,7 @@ public class BrandService {
             BrandRes.ProductListRes e = BrandRes.ProductListRes.builder()
                     .productId(product.getId())
                     .name(product.getName())
-                    .price(product.getPrice())
+                    .price(product.getDiscountedSalePrice())
                     .deliveryInfo(product.getDeliveryInfo())
                     .productUrl(product.getProductUrl())
                     .productImgList(productImgList)
